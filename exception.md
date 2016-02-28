@@ -29,9 +29,9 @@ Quando viene lanciata un'eccezione l'esecuzione del codice viene bloccata, e la 
 	Quando si vuole lanciare un'eccezione viene utilizzata la keyword `throw` accompagnata dalla creazione di un'eccezione.
 	Nel caso il compilatore trovi la keyword `throw` ci segnalerà che l'eccezione deve essere "gestita" in qualche maniera, e abbiamo così due possibilità:
 
-	# Cambiare la dichiarazione del metodo, specificando il fatto che quel metodo possa andare in errore.
+	1. Cambiare la dichiarazione del metodo, specificando il fatto che quel metodo possa andare in errore.
 
-	# Utilizzare un try/catch per blocccare l'errore.
+	2. Utilizzare un try/catch per blocccare l'errore.
 
 try/catch
 ---------
