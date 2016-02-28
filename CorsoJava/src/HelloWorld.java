@@ -12,10 +12,5 @@ public class HelloWorld {
 		 * Stampa nell'output
 		 */
 		System.out.println("Hello World!");
-		
-		Integer a = new Integer(5);
-		Integer b = new Integer(5);
-		
-		System.out.println(a == b);
 	}
 }
