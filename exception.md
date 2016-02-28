@@ -21,17 +21,17 @@ In questa maniera possiamo garantire la correttezza dei nostri calcoli, e gestir
 
 Quando viene lanciata un'eccezione l'esecuzione del codice viene bloccata, e la JVM inizia a ripercorrere lo stack del codice al contrario finchè non si verifica una delle seguenti condizioni:
 
-	- Nel tornare indietro la JVM incontra un blocco di codice try/catch utilizzato apposta per gestire l'eccezione e riprendere la normale esecuzione del codice.
+- Nel tornare indietro la JVM incontra un blocco di codice try/catch utilizzato apposta per gestire l'eccezione e riprendere la normale esecuzione del codice.
 
-	- Lo stack torna indietro fino alla prima riga del processo, terminandolo in errore.
+- Lo stack torna indietro fino alla prima riga del processo, terminandolo in errore.
 
-	- lanciare eccezione
-		Quando si vuole lanciare un'eccezione viene utilizzata la keyword `throw` accompagnata dalla creazione di un'eccezione.
-		Nel caso il compilatore trovi la keyword `throw` ci segnalerà che l'eccezione deve essere "gestita" in qualche maniera, e abbiamo così due possibilità:
+- lanciare eccezione
+	Quando si vuole lanciare un'eccezione viene utilizzata la keyword `throw` accompagnata dalla creazione di un'eccezione.
+	Nel caso il compilatore trovi la keyword `throw` ci segnalerà che l'eccezione deve essere "gestita" in qualche maniera, e abbiamo così due possibilità:
 
-		# Cambiare la dichiarazione del metodo, specificando il fatto che quel metodo possa andare in errore.
+	# Cambiare la dichiarazione del metodo, specificando il fatto che quel metodo possa andare in errore.
 
-		# Utilizzare un try/catch per blocccare l'errore.
+	# Utilizzare un try/catch per blocccare l'errore.
 
 try/catch
 ---------
