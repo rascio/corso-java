@@ -57,7 +57,7 @@ Exception e RuntimeException
 In Java sono state differenziate 2 tipi di eccezioni, le checked e le unchecked.
 I due tipi di eccezioni sono stati creati per indicare due tipologie differenti di errori, che riguardano la reazione che può avere il client del metodo.
 La differenza tra i due tipi è il fatto che il compilatore ci obbligherà a gestire le checked.
-Questo fa si che le 'unchecked' exceptions vengano utilizzate per indicare errori di programmazione, come ad esempio un numero negativo in un metodo che accetta solo numeri positivi, mentre le 'checked' vengono utilizzate per dichiarare errori che non dipendono dal programma stesso, ma da qualcosa di esterno a lui.
+Questo fa si che le **unchecked** exceptions vengano utilizzate per indicare errori di programmazione, come ad esempio un numero negativo in un metodo che accetta solo numeri positivi, mentre le **checked** vengono utilizzate per dichiarare errori che non dipendono dal programma stesso, ma da qualcosa di esterno a lui.
 La gestione degli errori nei programmi non è cosa semplice, e per effettuarla al meglio è necessaria esperienza e tanti tentativi.
 Per rendere più semplice la gestione del codice possiamo decidere di trattare tutte le eccezioni come uncheked e ricordarci sempre che ogni metodo può andare in errore, e quindi gestire tutto solo dove necessario.
 
