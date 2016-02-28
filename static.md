@@ -22,8 +22,8 @@ Quando si dichiara un metodo deve esserne specificato il suo _modificatore d'acc
 I modificatori d'accesso servono per limitare la visibilità del metodo in maniera da poterlo 	nascondere a chi non ha bisogno di utilizzarlo.
 Per decidere quale modificatore d'accesso utilizzare è sempre necessario domandarci "A chi serve questo metodo?"
 
-*public* => Il metodo è pubblico e chiunque ha visibilità sulla classe potrà vedere anche il metodo.
+**public** => Il metodo è pubblico e chiunque ha visibilità sulla classe potrà vedere anche il metodo.
 
-*private* => Il metodo è privato alla classe, viene utilizzato per i metodi che definiscono una logica che interessa solo alla classe che lo contiene e che non ci interessa condividere con altri.
+**private** => Il metodo è privato alla classe, viene utilizzato per i metodi che definiscono una logica che interessa solo alla classe che lo contiene e che non ci interessa condividere con altri.
 
-*protected* / *default* (niente) => Il metodo è disponibile a tutte le classi facenti parte dello stesso package, viene utilizzato per quei metodi di utils che ci servono in più classi che trattano gli stessi concetti, ma non ci interessa condividere con tutti.
+**protected** / *default* (niente) => Il metodo è disponibile a tutte le classi facenti parte dello stesso package, viene utilizzato per quei metodi di utils che ci servono in più classi che trattano gli stessi concetti, ma non ci interessa condividere con tutti.
