@@ -139,12 +139,19 @@ Un'oggetto quindi non è un valore, ma bensì un contenitore di valori, per capi
 ```
 
 Qui possiamo vedere la differenza tra valori ed oggetti. 
-Quando creiamo due valori (int) e li proviamo a confrontare questi restituiranno true se i due 	valori sono uguali.
-Se andiamo a controllare la loro controparte ad oggetti il comportamento ci risulterà strano all'inizio. Quello che stiamo facendo è creare due contenitori (`a1` e `b1`) che contengono al loro interno lo stesso valore (`5`), ma quando andiamo a fare il confronto (`==`), noi confronteremo i due contenitori, che non sono lo stesso, ma due contenitori differenti e quindi il risultato ci darà false. Alla variabile c invece non viene assegnato un nuovo contenitore, ma uno già esistente, per questo quando si andrà a confrontare con lo stesso contenitore il risultato darà `true`.
+Quando creiamo due valori (`int`) e li proviamo a confrontare questi restituiranno `true` se i due 	valori sono uguali.
+Se andiamo a controllare la loro controparte ad oggetti il comportamento ci risulterà strano all'inizio. Quello che stiamo facendo è creare due contenitori (`a1` e `b1`) che contengono al loro interno lo stesso valore (`5`), ma quando andiamo a fare il confronto (`==`), noi confronteremo i due contenitori, che non sono lo stesso, ma due contenitori differenti e quindi il risultato ci darà `false`. Alla variabile `c` invece non viene assegnato un nuovo contenitore, ma uno già esistente, per questo quando si andrà a confrontare con lo stesso contenitore il risultato darà `true`.
 
 Se volessimo vedere una versione semplificata della dichiarazione di Integer sarebbe:
 
-Questa definisce un solo valore gestito (value) di tipo `int`, con modificatore d'accesso privato impossibile da accedere da fuori.
+```java
+	public class Integer {
+		public int value;
+	}
+}
+```
+
+Questa definisce un solo valore gestito (`value`) di tipo `int`, con modificatore d'accesso privato impossibile da accedere da fuori.
 Per poter confrontare due interi quindi potremmo implementare un metodo statico che faccia il confronto delle due proprietà per noi, es.
 
 ```java
