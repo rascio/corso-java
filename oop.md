@@ -18,8 +18,8 @@ In questa maniera viene fatta la dichiarazione di un'oggetto persona (dichiarazi
 
 I Wrapper (Integer, String, etc...)
 ---------
-I valori utilizzati fino ad ora (int, float, boolean, etc...) vengono considerati dal linguaggi come 'valori primitivi', ovvero valori semplici.
-Il linguaggio ci offre anche la loro controparte object, i cosidetti wrapper che sono le classi Integer, Float, Boolean, etc..
+I valori utilizzati fino ad ora (`int`, `float`, `boolean`, etc...) vengono considerati dal linguaggi come 'valori primitivi', ovvero valori semplici.
+Il linguaggio ci offre anche la loro controparte object, i cosidetti wrapper che sono le classi `Integer`, `Float`, `Boolean`, etc..
 
 Il costruttore e le variabili di istanza
 ---------
@@ -36,7 +36,7 @@ Quando si dichiara un oggetto si può dichiarare anche il suo costruttore, ovver
 ```
 Il costruttore è un metodo "speciale" perchè il suo nome è lo stesso della classe e agisce in maniera particolare, assegnando le variabili di "istanza" dell'oggetto.
 
-Il costruttore viene utilizzato attraverso la keyword 'new' e genererà ogni volta un nuovo contenitore:
+Il costruttore viene utilizzato attraverso la keyword `new` e genererà ogni volta un nuovo contenitore:
 ```java
 	Integer a = new Integer(1);
 	Integer b = new Integer(2);
@@ -44,7 +44,7 @@ Il costruttore viene utilizzato attraverso la keyword 'new' e genererà ogni vol
 	System.out.println(a.value); //1
 	System.out.println(b.value); //2
 ```
-Quello che ci viene restituito da 'new Integer(1)' è un nuovo contenitore con dentro il valore 1 (etichettato come 'value').
+Quello che ci viene restituito da `new Integer(1)` è un nuovo contenitore con dentro il valore 1 (etichettato come 'value').
 
 Nel caso della Persona:
 ```java
@@ -93,7 +93,9 @@ Ovviamente un oggetto, può contenere anche altri oggetti costruendo così una s
 
 	System.out.println(p.nome + " " + p.cognome + " vive a " + p.indirizzo.citta + " in " + p.indirizzo.via);
 ```
+
 Una classe può definire anche più di un costruttore, ma solo uno potrà essere utilizzato per creare l'oggetto.
+
 ```java
 	public class Persona {
 		...
@@ -115,6 +117,7 @@ Una classe può definire anche più di un costruttore, ma solo uno potrà essere
 	Persona p = new Persona("Sherlock", "Holmes", new Indirizzo("Baker Street, 221B", "London"));
 	Persona p1 = new Persona("Watson", p.indirizzo);
 ```
+
 Cos'è un oggetto? (2/2)
 -------
 Un'oggetto quindi non è un valore, ma bensì un contenitore di valori, per capire questo si prenda ad esempio il seguente pezzo di codice.
@@ -134,6 +137,7 @@ Un'oggetto quindi non è un valore, ma bensì un contenitore di valori, per capi
 	System.out.println(a1 == c); // true
 	System.out.println(b1 == c); // false
 ```
+
 Qui possiamo vedere la differenza tra valori ed oggetti. 
 Quando creiamo due valori (int) e li proviamo a confrontare questi restituiranno true se i due 	valori sono uguali.
 Se andiamo a controllare la loro controparte ad oggetti il comportamento ci risulterà strano all'inizio. Quello che stiamo facendo è creare due contenitori (`a1` e `b1`) che contengono al loro interno lo stesso valore (`5`), ma quando andiamo a fare il confronto (`==`), noi confronteremo i due contenitori, che non sono lo stesso, ma due contenitori differenti e quindi il risultato ci darà false. Alla variabile c invece non viene assegnato un nuovo contenitore, ma uno già esistente, per questo quando si andrà a confrontare con lo stesso contenitore il risultato darà `true`.
@@ -205,7 +209,7 @@ Molto spesso ci troveremo a scrivere metodi che riguardano 1 solo oggetto, o com
 
 Nello scrivere questi metodi Java ci aiuta, avendo quelli che vengono chiamati "metodi di istanza". Vista la necessità di avere metodi che fanno calcoli su oggetti, rimuovendo la keyword static, faremo in modo che il metodo non appartenga più in generale alla class Richiesta, ma apparterrà solamente alle istanze della classe.
 Cosa vuol dire questo?
-In realtà questo è una comodità che ci offre il compilatore, per far si che ogni volta che dichiariamo un metodo "di istanza", il metodo abbia un parametro in automatico (implicito) del tipo dell'oggetto stesso, il cui nome sarà 'this'.
+In realtà questo è una comodità che ci offre il compilatore, per far si che ogni volta che dichiariamo un metodo "di istanza", il metodo abbia un parametro in automatico (implicito) del tipo dell'oggetto stesso, il cui nome sarà `this`.
 
 Ovvero: 
 
@@ -249,10 +253,11 @@ Cosa succede se ad una variabile non viene assegnato nessun valore nel costrutto
 In Java nel caso una variabile non venga inizializzato, la JVM assegnerà un valore di default, differente nel caso essa sia un valore primitivo, o un oggetto.
 Nel caso dei valori primitivi il valore di default assegnato sarà 0 (o false nel caso dei boolean).
 Nel caso degli oggetti la cosa diventa un po' più complicata.
-Come valore 0 di un oggetto è stato introdotto il concetto di 'null', che sta a significare proprio l'assenza di un valore.
+Come valore 0 di un oggetto è stato introdotto il concetto di `null`, che sta a significare proprio l'assenza di un valore.
 Purtroppo questo crea molta confusione, e ci può far trovare di fronte ad errori nel codice che possono portare a molta confusione se il concetto di null non è chiaro.
 Linguaggi più evoluti, hanno modalità di gestione differente dell'assenza di un valore, rendendo le cose più semplici.
 Una variabile può anche essere forzata ad essere null:
+
 ```java
 	Persona p = null;
 ```
@@ -263,7 +268,7 @@ Se prendiamo la dichiarazione di prima e proviamo ad utilizzare l'oggetto:
 	Persona p = null;
 	System.out.println("Il nome è " + p.nome);
 ```
-Vedremo che durante l'esecuzione del codice questo lancerà un NullPointerException quando si proverà ad accedere una proprietà dell'oggetto, questo perchè essendo l'oggetto "assente" (null), la JVM non avrà nessuna variabile 'nome' da leggere, il NullPointerException serve proprio per avvertirtici di questo.
+Vedremo che durante l'esecuzione del codice questo lancerà un `NullPointerException` quando si proverà ad accedere una proprietà dell'oggetto, questo perchè essendo l'oggetto "assente" (null), la JVM non avrà nessuna variabile 'nome' da leggere, il `NullPointerException` serve proprio per avvertirtici di questo.
 
 A cosa serve quindi il null?
 
@@ -323,6 +328,17 @@ E' importante però limitare lo scope delle variabili che possono essere null, e
 		Fattura fattura = new Fattura(p.nome, p.cognome, p.partitaIva, totale);
 
 		FatturaDb.salva(fattura);
+	}
+```
+
+A volte invece sarà necessario difenderci dai `null` che arrivano dall'esterno, ma l'unica soluzione percorribile sarà quella dell'errore, es:
+
+```java
+	public static Integer quadrato(Integer n) {
+		if (n == null) {
+			throw new RuntimeException("Il numero non può essere null");
+		}
+		return n * n;
 	}
 ```
 
