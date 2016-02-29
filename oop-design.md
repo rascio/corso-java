@@ -90,7 +90,7 @@ Questo ci permette così di ragionare più facilmente su alcuni metodi, sapendo 
 La similitudine migliore per un sistema ad oggetti è un puzzle, dove l'interfaccia corrisponde all'attacco (al lato) di un pezzettino di un puzzle, definendo così l'attacco che deve avere un pezzo per poter essere unito:
 
 ![interface as puzzle]
-(interface-puzzle.svg)
+(interface-puzzle.png)
 
 Questa tecnica
 Classi Astratte
