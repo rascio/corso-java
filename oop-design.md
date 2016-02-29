@@ -87,12 +87,30 @@ Riprendendo il metodo `inserisciLibri`, osserviamo bene come l'utilizzo dell'int
 Il ruolo dell'interfaccia nel design OOP è proprio questo, ci permette di definire solamente l'interazione tra due componenti del sistema, lasciando che esse conoscano solamente il contratto (l'interfaccia), ed essendo libere così di evolversi in autonomia senza avere dipendenze.
 Questo ci permette così di ragionare più facilmente su alcuni metodi, sapendo che determinate cose verranno gestite da chi implementa l'interfaccia, o quando si implementa l'interfaccia sapendo che determinate cose vengono gestite da chi la richiama.
 
-La similitudine migliore per un sistema ad oggetti è un puzzle, dove l'interfaccia corrisponde all'attacco (al lato) di un pezzettino di un puzzle, definendo così l'attacco che deve avere un pezzo per poter essere unito:
+La similitudine migliore per un sistema ad oggetti è un puzzle, dove l'interfaccia corrisponde all'attacco (al lato) di un pezzettino di un puzzle, definendo così l'attacco che deve avere un altro pezzo per poter essere unito:
 
 ![interface as puzzle]
 (interface-puzzle.png)
 
-Questa tecnica
+Questa tecnica ci permette di poter avere implementazioni differenti degli stessi metodi, e poter utilizzare una determinata logica in un momento, ed un'altra in un altro caso. Si pensi ad esempio nella situazione di test di logiche complesse, supponendo che la nostra applicazione debba eseguire dei calcoli complessi facendo 3-4 ricerche nel database per poter calcolare qualcosa, potremmo avere un metodo che utilizza l'interfaccia `EntityDb` che implementa questa logica, demandando all'interfaccia l'esecuzione effettiva delle query.
+In questa maniera potremmo utilizzare un'implementazione finta di `EntityDb` che restituisce dati preimpostati (*mock*) per eseguire dei test da codice dei quali siamo certi del risultato che il nostro metodo ci deve restituire, es:
+
+```java
+public class TestCalcoloComplesso {
+	public static void main(String[] args) {
+		EntityDb entityDb = new EntityDbMock();
+		Integer risultatoAtteso = 25;
+		Integer risultato = Applicazione.calcoloComplesso(entityDb);
+
+		if (!Objects.equals(risultato, risultatoAtteso)) {
+			throw new RuntimeException("Errore! Atteso: " + risultatoAtteso + ", invece è stato calcolato: " + risultato);
+		}
+		else {
+			System.out.println("Test eseguito con successo!");
+		}
+	}
+}
+```
 Classi Astratte
 -----
 Inner Class e Anonymous Class
