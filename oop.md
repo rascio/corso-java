@@ -257,12 +257,11 @@ Null: "A billion dollar mistake"
 --------
 Cosa succede se ad una variabile non viene assegnato nessun valore nel costruttore?
 In Java nel caso una variabile non venga inizializzato, la JVM assegnerà un valore di default, differente nel caso essa sia un valore primitivo, o un oggetto.
-Nel caso dei valori primitivi il valore di default assegnato sarà 0 (o false nel caso dei boolean).
+Nel caso dei valori primitivi il valore di default assegnato sarà `0` (o `false` nel caso dei boolean).
 Nel caso degli oggetti la cosa diventa un po' più complicata.
-Come valore 0 di un oggetto è stato introdotto il concetto di `null`, che sta a significare proprio l'assenza di un valore.
-Purtroppo questo crea molta confusione, e ci può far trovare di fronte ad errori nel codice che possono portare a molta confusione se il concetto di null non è chiaro.
-Linguaggi più evoluti, hanno modalità di gestione differente dell'assenza di un valore, rendendo le cose più semplici.
-Una variabile può anche essere forzata ad essere null:
+Come valore zero di un oggetto è stato introdotto il concetto di `null`, che sta a significare proprio l'assenza di un valore.
+In Java8 si è cercato di rimuovere il `null` con l'introduzione della classe `Optional`.
+Una variabile può anche essere forzata ad essere `null`:
 
 ```java
 Persona p = null;
@@ -321,7 +320,7 @@ else {
 }
 ```
 
-E' importante però limitare lo scope delle variabili che possono essere null, e gestirlo sempre appena viene chiamato un metodo con possibile risposta null, in maniera da limitarne l'utilizzo e prevenire eventuali errori "confusi":
+E' importante però limitare lo scope delle variabili che possono essere null, gestendolo sempre appena viene chiamato un metodo con possibile risposta null, in maniera da limitarne l'utilizzo e prevenire eventuali errori "confusi":
 
 ```java
 public static void creaFattura(String codiceFiscale, Float totale) {
@@ -509,3 +508,7 @@ public static void main(String[] args) {
 
 }
 ```
+
+protected
+---------
+Il modificatore d'accesso `protected` limita la visibilità di un metodo a tutte le classi nello stesso package e a tutte le classi che estendono la classe che lo dichiara.

@@ -103,7 +103,7 @@ public class TestCalcoloComplesso {
 		Integer risultato = Applicazione.calcoloComplesso(entityDb);
 
 		if (!Objects.equals(risultato, risultatoAtteso)) {
-			throw new RuntimeException("Errore! Atteso: " + risultatoAtteso + ", invece è stato calcolato: " + risultato);
+			System.out.println("Errore! Atteso: " + risultatoAtteso + ", invece è stato calcolato: " + risultato);
 		}
 		else {
 			System.out.println("Test eseguito con successo!");
@@ -111,11 +111,163 @@ public class TestCalcoloComplesso {
 	}
 }
 ```
+
 Classi Astratte
 -----
-Inner Class e Anonymous Class
------
+In Java possiamo creare anche quelle che vengono chiamate classi astratte, che sono un mix tra classi normali (concrete) e interfacce. Una classe astratta definisce un tipo che non può essere istanziato, ma che può dichiarare metodi *astratti* come un'interfaccia che dovrà essere implementato dalla classe concreta che lo estenderà.
+
+```java
+public abstract class AbstractRichiestaHttpManager {
+	public String gestisci(HttpRequest request) {
+		if (Objects.equals("GET", request.getMethod())) {
+			return doGet(request);
+		}
+		else {
+			return doPost(request);
+		}
+	}
+
+	protected abstract String doGet(HttpRequest request);
+	protected abstract String doPost(HttpRequest request);
+}
+
+public class PaginaFormPersona extends AbstractRichiestaHttpManager {
+	@Override
+	protected String doGet(HttpRequest request) {
+		return "<html><body><form><input name='nome'/><input name='cognome'/></form></body></html>";
+	}
+	@Override
+	protected String doPost(HttpRequest request) {
+		String nome = request.getParameter("nome");
+		String cognome = request.getParameter("cognome");
+
+		Rubrica.inserisciPersona(nome, cognome, new MySqlPersonaDb());
+
+		return "<html><body><h1>" + nome + " " + cognome + " inserito con successo!</h1></body></html>";
+
+	}
+}
+```
+
 Composition vs Inheritance
------
+--------------------------
+
+Molto spesso l'utilizzo di una classe astratta può essere riscritto attraverso l'utilizzo di un'interfaccia, si prenda l'esempio:
+
+```java
+public abstract class AbstractScriptMySql {
+	public void esegui(MysqlDb db) {
+		Connessione connessione = Mysql.creaConnessione(db);
+		try {
+			this.execute(connessione);
+			connessione.commit();
+		}
+		catch (Exception e) {
+			connessione.rollback();
+		}
+		finally {
+			connessione.chiudi();
+		}
+	}
+
+	protected void execute(Connessione connessione);
+}
+
+public class InserimentoIniziale extends AbstractScriptMySql {
+	@Override
+	protected void execute(Connessione connessione) {
+		connessione.eseguiQuery("INSERT INTO colori VALUES ('GIALLO')");
+		connessione.eseguiQuery("INSERT INTO colori VALUES ('ROSSO')");
+		connessione.eseguiQuery("INSERT INTO colori VALUES ('VERDE')");
+	}
+}
+
+//infine
+
+InserimentoIniziale inserimento = new InserimentoIniziale();
+inserimento.esegui(DbApplicazione.crea());
+```
+
+In questo caso può essere riscritto come:
+
+```java
+public interface ScriptLogic {
+	void execute(Connessione connessione);
+}
+
+//ex AbstractScriptMySql
+public class MysqlScript {
+	private ScriptLogic logic;
+
+	public MysqlScript(ScriptLogic logic) {
+		if (logic == null) {
+			throw new RuntimeException("La logica non può essere null");
+		}
+		this.logic = logic;
+	}
+
+	public void esegui(MysqlDb db) {
+		Connessione connessione = Mysql.creaConnessione(db);
+		try {
+			this.logic.execute(connessione);
+			connessione.commit();
+		}
+		catch (Exception e) {
+			connessione.rollback();
+		}
+		finally {
+			connessione.chiudi();
+		}
+	}
+}
+
+public class InserimentoIniziale implements ScriptLogic {
+	@Override
+	protected void execute(Connessione connessione) {
+		connessione.eseguiQuery("INSERT INTO colori VALUES ('GIALLO')");
+		connessione.eseguiQuery("INSERT INTO colori VALUES ('ROSSO')");
+		connessione.eseguiQuery("INSERT INTO colori VALUES ('VERDE')");
+	}
+}
+
+//infine
+
+MysqlScript script = new MysqlScript(new InserimentoIniziale());
+script.esegui(DbApplicazione.crea());
+```
+
+Anonymous Class
+---------------
+Java in realtà ci permette di istanziare classi astratte e interfacce, a patto però che noi gli forniamo un'implementazione dei metodi, ad esempio avendo:
+
+```java
+public interface Eseguibile {
+	/*
+	 * Come 'abstract' anche il 'public' nelle interfacce è implicito
+	 */
+	void esegui();
+}
+```
+
+Possiamo poi usarla come:
+
+```java
+Eseguibile e = new Eseguibile() {
+	public void esegui() {
+		System.out.println("Fai qualcosa!");
+	}
+};
+eseguiTraDieciMinuti(e);
+```
+
+oppure:
+
+```java
+eseguiTraDieciMinuti(new Eseguibile() {
+	public void esegui() {
+		System.out.println("Fai qualcosa!");
+	}
+});
+```
 Generics
 -----
