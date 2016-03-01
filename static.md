@@ -3,7 +3,7 @@ Metodi Statici
 
 I metodi statici sono funzioni che possono essere richiamate nel codice e ci servono per dividere al meglio la logica del nostro programma. Un metodo statico appartiene ad una classe e può essere utilizzando solamente facendo riferimento ad essa.
 
-[Sorgente](CorsoJava/src/it/agecontrol/corsi/java/lezione2/MetodiStatici.java)
+[Sorgente](CorsoJava/src/it/r/corsi/java/lezione2/MetodiStatici.java)
 
 Package e import
 -------

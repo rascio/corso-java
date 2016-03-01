@@ -1,4 +1,4 @@
-package it.agecontrol.corsi.java.lezione4;
+package it.r.corsi.java.lezione4;
 
 public class OOPBase {
 

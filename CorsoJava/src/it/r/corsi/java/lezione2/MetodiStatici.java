@@ -1,4 +1,4 @@
-package it.agecontrol.corsi.java.lezione2;
+package it.r.corsi.java.lezione2;
 
 import java.util.Arrays;
 

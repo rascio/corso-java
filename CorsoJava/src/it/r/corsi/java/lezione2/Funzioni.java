@@ -1,4 +1,4 @@
-package it.agecontrol.corsi.java.lezione2;
+package it.r.corsi.java.lezione2;
 
 class Funzioni {
 
@@ -25,7 +25,7 @@ class Funzioni {
 	}
 
 	/**
-	 * Crea un array con un numero di elementi definiti, ma riempindolo
+	 * Crea un array con un numero di elementi definiti, ma riempiendolo
 	 * con valori random, entro un certo range.
 	 * @param numeroElementi Il numero di elementi dell'array
 	 * @param minimo Il valore minimo che gli elementi possono assumere
@@ -34,15 +34,15 @@ class Funzioni {
 	 */
 	public static int[] creaArray(int numeroElementi, int minimo, int massimo) {
 		int[] array = new int[numeroElementi];
-		
+
 		riempiConNumeriCasuali(minimo, massimo, array);
-		
+
 		return array;
 	}
 
 	private static void riempiConNumeriCasuali(int minimo, int massimo, int[] array) {
 		int differenza = massimo - minimo;
-		
+
 		for (int i = 0 ; i < array.length ; i++) {
 			/*
 			 * Math.random() restituisce un numero casuale compreso tra 0 e 1

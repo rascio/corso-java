@@ -67,4 +67,4 @@ Quando gestire le eccezioni
 ---------------------------
 La gestione dell'eccezione prevede la risoluzione del problema, che a volte può voler dire semplicemente segnalare il problema all'utente. Si pensi nell'ambito di un applicazione web, quando effettuando un calcolo si ha un errore, nello stack del codice bisognerà gestire i possibili errori e darne notifica all'utente inviando una pagina di errore, piuttosto che lasciar fallire il programma ed interrompere il processo.
 
-[Sorgente](CorsoJava/src/it/agecontrol/corso/java/lezione3/Eccezioni.java)
+[Sorgente](CorsoJava/src/it/r/corsi/java/lezione3/Eccezioni.java)

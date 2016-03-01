@@ -238,7 +238,7 @@ script.esegui(DbApplicazione.crea());
 
 Anonymous Class
 ---------------
-Java in realtà ci permette di istanziare classi astratte e interfacce, a patto però che noi gli forniamo un'implementazione dei metodi, ad esempio avendo:
+Java in realtà ci permette di istanziare classi astratte e interfacce, a patto però che gli venga fornita un'implementazione dei metodi, ad esempio avendo:
 
 ```java
 public interface Eseguibile {
@@ -252,22 +252,31 @@ public interface Eseguibile {
 Possiamo poi usarla come:
 
 ```java
-Eseguibile e = new Eseguibile() {
+TaskGenerico task = new TaskGenerico() {
 	public void esegui() {
 		System.out.println("Fai qualcosa!");
 	}
 };
-eseguiTraDieciMinuti(e);
+eseguiTraDieciMinuti(task);
 ```
 
 oppure:
 
 ```java
-eseguiTraDieciMinuti(new Eseguibile() {
+eseguiTraDieciMinuti(new TaskGenerico() {
 	public void esegui() {
 		System.out.println("Fai qualcosa!");
 	}
 });
 ```
+
 Generics
 -----
+
+problema classi che implementano un comporamento generico a prescindere dal contenuto (List, Optional).
+problema dei cast con queste classi.
+Il cast viene risolto con i generics che permettono di definire il tipo al momento dell'utilizzo della classe.
+
+I generics possono essere usati anche sui metodi.
+
+I generics possono definire un tipo base di partenza (oltre Object) (utilizzo avanzato)

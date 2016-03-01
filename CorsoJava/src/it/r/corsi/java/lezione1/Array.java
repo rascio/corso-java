@@ -1,4 +1,4 @@
-package it.agecontrol.corsi.java.lezione1;
+package it.r.corsi.java.lezione1;
 
 public class Array {
 
