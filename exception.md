@@ -3,8 +3,7 @@ Exception
 
 Cosa sono?
 ----------
-Un'eccezione rappresenta un errore nell'esecuzione del programma, può essere accadere
-perchè è successo qualcosa di inaspettato nel sistema, oppure perchè si sta facendo qualcosa di "vietato."
+Un'eccezione rappresenta un errore nell'esecuzione del programma, può accadere perchè è successo qualcosa di inaspettato nel sistema, oppure perchè si sta facendo qualcosa di "vietato".
 Le eccezioni sono parte fondamentale, perchè vengono utilizzate per proteggere il programma da eventuali errori di programmazione, o input sbagliati.
 Ad esempio se si volesse fare un metodo per calcolare la radice quadrata di un numero:
 
@@ -29,7 +28,7 @@ Quando viene lanciata un'eccezione l'esecuzione del codice viene bloccata, e la 
 	Quando si vuole lanciare un'eccezione viene utilizzata la keyword `throw` accompagnata dalla creazione di un'eccezione.
 	Nel caso il compilatore trovi la keyword `throw` ci segnalerà che l'eccezione deve essere "gestita" in qualche maniera, e abbiamo così due possibilità:
 
-	1. Cambiare la dichiarazione del metodo, specificando il fatto che quel metodo possa andare in errore.
+	1. Cambiare la dichiarazione del metodo, specificando il fatto che possa andare in errore.
 
 	2. Utilizzare un try/catch per blocccare l'errore.
 
