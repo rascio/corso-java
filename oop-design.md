@@ -241,7 +241,7 @@ Anonymous Class
 Java in realtà ci permette di istanziare classi astratte e interfacce, a patto però che gli venga fornita un'implementazione dei metodi, ad esempio avendo:
 
 ```java
-public interface Eseguibile {
+public interface TaskGenerico {
 	/*
 	 * Come 'abstract' anche il 'public' nelle interfacce è implicito
 	 */
@@ -272,10 +272,135 @@ eseguiTraDieciMinuti(new TaskGenerico() {
 
 Generics
 -----
+Ci sono casi in cui un oggetto lavori con un altro oggetto senza che gli interessi il suo tipo, un esempio è la lista.
 
-problema classi che implementano un comporamento generico a prescindere dal contenuto (List, Optional).
-problema dei cast con queste classi.
-Il cast viene risolto con i generics che permettono di definire il tipo al momento dell'utilizzo della classe.
+```java
+public class List {
+	private Object[] values;
+
+	public List() {
+		values = new Object[0];
+	}
+
+	public void add(Object o) {
+		Object[] newValues = Arrays.copyOf(values, values.length + 1);
+		newValues[newValues.length - 1] = o;
+		this.values = newValues;
+	}
+
+	public Object get(Integer i) {
+		return this.values[i];
+	}
+
+	public int size() {
+		return this.values.length;
+	}
+
+	public String toString() {
+		return Arrays.toString(this.values);
+	}
+}
+```
+
+L'utilizzo di queste classi però porta a del codice "sporco" e ripetuto, per gestire i cast degli oggetti:
+
+```java
+public static void main(String[] args) {
+	List lista = new List();
+	lista.add("pippo");
+	lista.add("topolino");
+	lista.add("paperino");
+
+	Object valore = lista.get(1);
+
+	System.out.println("Il valore in posizione 1 è: " + valore);
+
+	/*
+	 * Per poter utilizzare il contenuto della lista, per la classe che in realtà è (String)
+	 * abbiamo bisogno di eseguire il cast, perchè la lista dichiara al suo interno un array di Object
+	 */
+	String stringa = (String) lista.get(0);
+
+	/*
+	 * La classe lista dichiara il metodo add con Object, quindi qualsiasi tipo di oggetto può essere passato.
+	 * Questo permette alla lista di contenere oggetti differenti, che risulta molto prone ad errori.
+	 */
+	lista.add(new Persona("Oliver", "Sacks"));
+}
+```
+
+Il problema degli oggetti generici in Java è stato risolto con l'utilizzo dei *Generic*.
+Ovvero una classe nella sua definizione potrà dichiarare che utilizza un tipo `T` generico, che potrà essere ridefinito al momento dell'utilizzo della classe.
+
+```java
+public class List<T> {
+	private T[] values;
+
+	public List() {
+		this.values = new T[0];
+	}
+	public void add(T o) {
+		/*
+		 * Anche i metodi statici possono dichiarare dei tipi generici, altrimenti il metodo
+		 * copyOf sarebbe costretto a restituire un array di Object.
+		 */
+		T[] newValues = Arrays.copyOf(values, values.length + 1);
+		newValues[newValues.length - 1] = o;
+		this.values = newValues;
+	}
+
+	public T get(Integer i) {
+		return this.values[i];
+	}
+
+	public int size() {
+		return this.values.length;
+	}
+
+	public String toString() {
+		return Arrays.toString(this.values);
+	}
+}
+```
+E si utilizzano:
+
+```java
+public static void main(String[] args) {
+	/*
+	 * Dichiariamo al compilatore che il tipo 'T' di List in questo caso è 'String'
+	 */
+	List<String> lista = new List<>();
+	lista.add("pippo");
+	lista.add("topolino");
+	lista.add("paperino");
+
+	Object valore = lista.get(1); //Essendo una stringa anche un Object, questa riga continua ad essere valida
+
+	System.out.println("Il valore in posizione 1 è: " + valore);
+
+	/*
+	 * Il metodo 'get' ora restituisce un tipo 'T' che in questo caso vale 'String'
+	 */
+	String stringa = lista.get(0);
+
+	/*
+	 * Il metodo add prende in ingresso una variabile i tipo 'T', il compilatore ci avvertirà che non gli stiamo passando
+	 * una String
+	 */
+//	lista.add(new Persona("Oliver", "Sacks"));
+}
+
+public static <T> List<T> concat(List<T> a, List<T> b) {
+	List<T> result = new List<>();
+	for (int i = 0 ; i < a.size() ; i++) {
+		result.add(a.get(i));
+	}
+	for (int i = 0 ; i < b.size() ; i++) {
+		result.add(b.get(i));
+	}
+	return result;
+}
+```
 
 I generics possono essere usati anche sui metodi.
 

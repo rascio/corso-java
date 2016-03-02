@@ -2,6 +2,7 @@ package it.r.corsi.java.lezione2;
 
 import java.util.Arrays;
 
+
 public class MetodiStatici {
 
 	public static void main(String[] args) {
@@ -20,10 +21,11 @@ public class MetodiStatici {
 		/*
 		 * Il metodo sort modifica il nostro array riordinandolo, questo metodo non è side effect free.
 		 */
-		Arrays.sort(numeri);
+		
 		
 		System.out.println(Arrays.toString(numeri));
 		System.out.println("Contiene il numero 20? " + contiene(numeri, 20));
+		
 		
 	}
 	
@@ -41,6 +43,7 @@ public class MetodiStatici {
 	}
 	
 	public static boolean contiene(int[] array, int n) {
+		Arrays.sort(array);
 		return Arrays.binarySearch(array, n) > -1;
 	}
 }

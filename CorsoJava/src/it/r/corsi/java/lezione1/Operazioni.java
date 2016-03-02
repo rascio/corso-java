@@ -6,7 +6,7 @@ public class Operazioni {
 		/*
 		 * Dichiarazioni di variabili di tipo intero
 		 */
-		int a = 4;
+		int a = 4;		
 		int b = 8;
 		
 		/*

@@ -11,6 +11,6 @@ public class HelloWorld {
 		/*
 		 * Stampa nell'output
 		 */
-		System.out.println("Hello World!");
+		System.out.println("Hello " + args[0] + "!");
 	}
 }
