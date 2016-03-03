@@ -5,6 +5,11 @@ Link
 [Stackoverflow](http://stackoverflow.com/)
 [mkyong](http://www.mkyong.com/)
 
+Documentazioni
+--------------
+
+[Devdocs](http://devdocs.io/)
+
 Java
 ----
 
@@ -22,6 +27,11 @@ Guava è una libreria Java che offre molte classi di utilities varie non impleme
 
 [JUnit](http://junit.org/)
 JUnit è un framework per il test del codice, molto comodo e utile quando integrato con tool come Maven.
+
+Piattaforme
+-----------
+
+[Groovy on Grails](https://grails.org/)
 
 Avanzati
 --------

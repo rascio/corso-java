@@ -4,7 +4,7 @@ package it.r.corsi.java.lezione3;
 
 public class Eccezioni {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception{
 		
 		String risultato = ricerca("software design");
 		
@@ -13,7 +13,7 @@ public class Eccezioni {
 		System.out.println("Fine del programma.");
 	}
 	
-	private static String ricerca(String argomento) {
+	private static String ricerca(String argomento){
 		/*
 		 * Tenta la ricerca e ne gestisce un possibile errore. 
 		 * In questo caso il try/catch viene utilizzato perchè sappiamo che ogni riga può andare in errore

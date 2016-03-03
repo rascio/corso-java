@@ -106,16 +106,28 @@ public class Persona {
 	}
 
 	public Persona(String c, Indirizzo i) {
-		nome = "";
-		cognome = c;
-		indirizzo = i;
+		this("", c, i);
+//		nome = "";
+//		cognome = c;
+//		indirizzo = i;
 	}
 }
 ```
 
 ```java
-Persona p = new Persona("Sherlock", "Holmes", new Indirizzo("Baker Street, 221B", "London"));
-Persona p1 = new Persona("Watson", p.indirizzo);
+Indirizzo i = new Indirizzo("Baker Street, 221B", "London");
+Persona p = new Persona("Sherlock", "Holmes", i);
+Persona p1 = new Persona(p.nome, copia(p.indirizzo));
+p.nome = new string("ciccio")
+//p.indirizzo.citta = new String("roma");
+
+p.indirizzo == p1.indirizzo //false
+p.indirizzo.via == p1.indirizzo.via //true
+
+
+public static Indirizzo copia(Indirizzo i) {
+	return new Indirizzo(i.via, i.citta);
+}
 ```
 
 Cos'è un oggetto? (2/2)
@@ -213,6 +225,14 @@ public class Richiesta {
 }
 ```
 
+```java
+Richiesta r = new Richiesta(1);
+
+Richiesta.rifiuta(r, "Rifiutata perchè consegnata in ritardo");
+
+System.out.println(Richiesta.stato(r));
+```
+
 Nello scrivere questi metodi Java ci aiuta, avendo quelli che vengono chiamati "metodi di istanza". Vista la necessità di avere metodi che fanno calcoli su oggetti, rimuovendo la keyword static, faremo in modo che il metodo non appartenga più in generale alla class Richiesta, ma apparterrà solamente alle istanze della classe.
 Cosa vuol dire questo?
 In realtà questo è una comodità che ci offre il compilatore, per far si che ogni volta che dichiariamo un metodo "di istanza", il metodo abbia un parametro in automatico (implicito) del tipo dell'oggetto stesso, il cui nome sarà `this`.
@@ -220,9 +240,19 @@ In realtà questo è una comodità che ci offre il compilatore, per far si che o
 Ovvero:
 
 ```java
-public void accetta() {
-	this.stato = "ACCETTATA";
-}
+public class Richiesta {
+  private Integer id;
+  private String stato:
+  private String motivoRifiuto;
+
+  public Richiesta(Integer id) {
+      this.id = id;
+      this.stato = "BOZZA";
+  }
+
+	public void accetta() {
+		this.stato = "ACCETTATA";
+	}
 
 /*
 	Non compila in quanto 'this' è una keyword Java
@@ -233,13 +263,15 @@ public void accetta() {
 
 */
 
-public void rifiuta(String motivazione) {
-	this.stato = "RIFIUTATA";
-	this.motivoRifiuto = motivazione;
-}
+	public void rifiuta(String motivazione) {
+		this.stato = "RIFIUTATA";
+		this.motivoRifiuto = motivazione;
+	}
 
-public String stato() {
-	return this.stato;
+	public String stato() {
+		return this.stato;
+	}
+
 }
 ```
 

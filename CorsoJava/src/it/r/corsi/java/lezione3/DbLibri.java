@@ -2,7 +2,7 @@ package it.r.corsi.java.lezione3;
 
 public class DbLibri {
 	
-	public static String[] ricercaLibro(String argomento) {
+	public static String[] ricercaLibro(String argomento){
 		/*
 		 * Quando viene utilizzato un metodo che dichiara un'eccezione, il compilatore ci forzerà a gestirla.
 		 * In questo caso ci sono due possibili modi di gestirla:
