@@ -7,13 +7,13 @@ Ogni oggetto nella programmazione ad oggetti viene utilizzato da altri oggetti "
 I linguaggi ad oggetti, ci permettono di dichiarare anche solamente l'interfaccia pubblica di un oggetto, senza la sua implementazione, es.
 
 ```java
-public interface LibroDb {
+public interface FilmDb {
 
-	public void inserisci(Libro libro);
+	public void inserisci(Film film);
 
-	public Libro[] cercaTutti();
+	public Film[] cercaTutti();
 
-	public Libro[] cercaPerArgomento(String argomento);
+	public Film[] cercaPerArgomento(String argomento);
 
 }
 ```
@@ -22,60 +22,61 @@ A differenza degli oggetti, le interfacce non possono essere istanziate, questo 
 Un oggetto però può "implementare" un'interfaccia, e questo lo obbligherà a definire quei metodi dichiarati nell'interfaccia.
 
 ```java
-public class LibroDbFinto implements LibroDb {
+public class FilmDbFinto implements FilmDb {
 
-	public void inserisci(Libro libro) {
-		System.out.println("Inserisci libro " + libro)
+	public void inserisci(Film film) {
+		System.out.println("Inserisci film " + film)
 	}
 
-	public Libro[] cercaTutti() {
-		return new Libro[] {
-			new Libro("Spring in Action"),
-			new Libro("Pragmatic Programmer"),
-			new Libro("Solr in Action")
+	public Film[] cercaTutti() {
+		/*
+		 * Crea un array di 3 posizioni già inizializzato
+		 */
+		return new Film[] {
+			new Film("Le Iene"),
+			new Film("Man On The Moon"),
+			new Film("The Imitation Game")
 		};
 	}
 
-	public Libro[] cercaPerArgomento(String argomento) {
+	public Film[] cercaPerArgomento(String argomento) {
 		System.out.println("ricerca per: " + argomento);
 		return cercaTutti();
 	}
 }
 ```
 
-`implements` come `extends` crea una relazione *is-a* tra le due classi, facendo così diventare la classe `LibroDbFinto` un `LibroDb`, permettendo quindi dichiarazioni tipo:
+`implements` come `extends` crea una relazione *is-a* tra le due classi, facendo così diventare la classe `FilmDbFinto` un `FilmDb`, permettendo quindi dichiarazioni tipo:
 
 ```java
 public static void main(String[] args) {
-	LibroDb libroDb = new LibroDbFinto();
+	FilmDb libroDb = new FilmDbFinto();
 
 	inserisciLibri(3, libroDb);
 }
 
-public static void inserisciLibri(Integer numero, LibroDb libroDb) {
-	for (int i = 0 ; i < numero ; i++) {
-		Libro libro = new Libro("Libro #" + i);
-		System.out.println("Inserisci libro " + libro);
+public static void inserisciFilm(String titolo, FilmDb libroDb) {
+	Film libro = new Film(titolo);
+	System.out.println("Inserisci libro " + libro);
 
-		libroDb.inserisci(libro);
-	}
+	libroDb.inserisci(libro);
 }
 ```
 
-Le interfacce sono un componente molto importante al livello di design, e un loro utilizzo corretto semplifica di molto il codice, perchè ci permettono di dividere il **cosa** un oggetto deve fare dal **come** esso lo esegue.
-Nell'esempio precedente possiamo vedere come le operazioni su database per gestire un `Libro` siano state dichiarate in un'interfaccia, che ci permette di utilizzarle tramite l'interfaccia, ma senza dover conoscere a priori il vero oggetto che verrà utilizzato per effettuare l'operazione.
+Le interfacce sono un componente molto importante a livello di design, e un loro utilizzo corretto semplifica di molto il codice, perchè ci permettono di dividere il **cosa** un oggetto deve fare dal **come** esso lo esegue.
+Nell'esempio precedente possiamo vedere come le operazioni su database per gestire un `Film` siano state dichiarate in un'interfaccia, che ci permette di utilizzarle tramite l'interfaccia, ma senza dover conoscere a priori il vero oggetto che verrà utilizzato per effettuare l'operazione.
 Questo trucco ci permette di avere implementazioni differenti degli stessi metodi, e decidere quale implementazione utilizzare in base a quello che dobbiamo fare.
 Definire le operazioni verso il database tramite un'interfaccia, ci permette di poter scrivere il metodo `inserisciLibri` senza dover conoscere (e/o implementare) la logica di connessione al database, anzi ci permette di avere anche *implementazioni* differenti degli stessi metodi. Es:
 ```java
-public class MysqlLibroDb implements LibroDb {
-	public void inserisci(Libro libro) {
+public class MysqlFilmDb implements FilmDb {
+	public void inserisci(Film film) {
 		Mysql mysql = new Mysql("host", "username", "password");
 		//implementazione di connessione e query mysql
 	}
 }
 
-public class OracleLibroDb implements LibroDb {
-	public void inserisci(Libro libro) {
+public class OracleFilmDb implements FilmDb {
+	public void inserisci(Film film) {
 		OracleDb oracle = new OracleDb("SID", "host", "username", "password");
 		//implementazione di connessione e query mysql
 	}
@@ -401,7 +402,5 @@ public static <T> List<T> concat(List<T> a, List<T> b) {
 	return result;
 }
 ```
-
-I generics possono essere usati anche sui metodi.
 
 I generics possono definire un tipo base di partenza (oltre Object) (utilizzo avanzato)
