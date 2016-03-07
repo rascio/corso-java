@@ -1,7 +1,6 @@
 package it.agecontrol.mazzocarte;
 
 public class Mazzo {
-	
 	public static Mazzo crea() {
 		Carta[] carte = new Carta[40];
 		for (int i = 0 ; i < 10 ; i++) {

@@ -4,7 +4,7 @@ Import e export di un jar
 -------------------------
 Java permette l'esportazione di un progetto tramite il formato JAR.
 JAR non è nient'altro che uno zip, che con delle META-INF può diventare anche eseguibile.
-I JAR vengono utilizzati anche per condividere librerie di codice che risolvono problemi specifici (es. java util o commons-\*)
+I JAR vengono utilizzati anche per condividere librerie di codice che risolvono problemi specifici (es. java.util o commons-\*)
 Per utilizzare un JAR a runtime è necessario averlo nel classpath di compilazione e esecuzione.
 
 Classpath
@@ -29,6 +29,16 @@ Il `size()` di una lista, e l'`add()` e `remove()` di elementi.
 `Collections.sort(Comparable)` ovvero come ordinare una collection.
 
 Creare le liste utilizzando `ArrayList`, `LinkedList` e `Vector`.
+
+```java
+List lista = new ArrayList();
+
+lista.add(5);
+lista.add(6);
+lista.add(7);
+
+System.out.println(lista);
+```
 
 Set
 ---
@@ -65,8 +75,3 @@ map.put("superman", new Persona("Clark", "Ant"));
 
 System.out.println(map);
 ```
-
-
-
-I/O Stream
-----------

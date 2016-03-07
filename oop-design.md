@@ -115,7 +115,7 @@ public class TestCalcoloComplesso {
 
 Classi Astratte
 -----
-In Java possiamo creare anche quelle che vengono chiamate classi astratte, che sono un mix tra classi normali (concrete) e interfacce. Una classe astratta definisce un tipo che non può essere istanziato, ma che può dichiarare metodi *astratti* come un'interfaccia che dovrà essere implementato dalla classe concreta che lo estenderà.
+In Java possiamo creare anche quelle che vengono chiamate classi astratte, che sono un mix tra classi normali (concrete) e interfacce. Una classe astratta definisce un tipo che non può essere istanziato, ma che può dichiarare metodi *astratti* che, come un'interfaccia, dovrà essere implementato dalla classe concreta che la estenderà.
 
 ```java
 public abstract class AbstractRichiestaHttpManager {
@@ -148,6 +148,12 @@ public class PaginaFormPersona extends AbstractRichiestaHttpManager {
 
 	}
 }
+```
+
+```java
+HttpRequest request = //riceve la request http
+AbstractRichiestaHttpManager abstractRichiestaHttpManager = getHttpManagerPerUrl(request.getUrl());
+abstractRichiestaHttpManager.gestisci(request);
 ```
 
 Composition vs Inheritance

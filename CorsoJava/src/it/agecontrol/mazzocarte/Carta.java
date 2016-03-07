@@ -37,6 +37,13 @@ public class Carta {
 		
 	}
 
+	public String getSeme() {
+		return seme;
+	}
+	
+	public Integer getValore() {
+		return valore;
+	}
 
 
 	@Override
