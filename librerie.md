@@ -123,3 +123,5 @@ Rappresentano una fonte di bytes da usare per la lettura (`InputStream`) o la sc
 Un esempio del loro utilizzo è la scrittura e lettura di file tramite le loro implementazioni `FileInputStream` e `FileOutputStream`.
 Un altro esempio del loro utilizzo è la comunicazione via rete, gestita dagli stream delle socket.
 Infine come ultimo esempio possiamo vedere i due stream statici `System.in` e `System.out`.
+
+[Sorgente](CorsoJava/src/it/r/corsi/java/stream/Main.java)
