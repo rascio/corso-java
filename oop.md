@@ -278,11 +278,12 @@ public class Richiesta {
 Per utilizzare questi metodi, sarà obbligatorio avere a disposizione un'istanza dell'oggetto, e il metodo viene chiamato come fosse una proprietà dell'oggetto.
 
 ```java
-Richiesta richiesta = new Richiesta(1);
+Richiesta r = new Richiesta(1);
 
-richiesta.accetta();
+//Richiesta.accetta(r);
+r.accetta();
 
-richiesta.rifiuta("Consegnata in ritardo.");
+r.rifiuta("Consegnata in ritardo.");
 ```
 
 Null: "A billion dollar mistake"
@@ -405,7 +406,7 @@ public class Persona {
 		return this.cognome;
 	}
 
-	public void setCognome() {
+	public void setCognome(String cognome) {
 		this.cognome = cognome;
 	}
 }
@@ -510,9 +511,11 @@ public class Persona {
 public class Dipendente extends Persona{
 	public String azienda;
 
-	public Persona(String nome, String cognome, String azienda) {
-		this.nome = nome;
-		this.cognome = cognome;
+	public Dipendente(String nome, String cognome, String azienda) {
+		/*
+		 * Il super chiama il costruttore di Persona
+		 */
+		super(nome, cognome);
 		this.azienda = azienda;
 	}
 

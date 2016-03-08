@@ -13,6 +13,12 @@ Documentazioni
 Java
 ----
 
+[Apache DBCP](https://commons.apache.org/proper/commons-dbcp/)
+Pool di connessioni per il database.
+
+[Apache DbUtils](https://commons.apache.org/proper/commons-dbutils/)
+Libreria di utils per lavorare con il datbase.
+
 [Hibernate](http://hibernate.org/)
 Hibernate si occupa di gestire la persistenza dei dati, mappando automaticamente oggetti Java in tabelle su db relazionale.
 
@@ -27,6 +33,9 @@ Guava è una libreria Java che offre molte classi di utilities varie non impleme
 
 [JUnit](http://junit.org/)
 JUnit è un framework per il test del codice, molto comodo e utile quando integrato con tool come Maven.
+
+[Lombok](https://projectlombok.org/)
+Project Lombok permette di utilizzare annotation per far generare codice Java al compilatore.
 
 Piattaforme
 -----------

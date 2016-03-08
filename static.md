@@ -5,6 +5,42 @@ I metodi statici sono funzioni che possono essere richiamate nel codice e ci ser
 
 [Sorgente](CorsoJava/src/it/r/corsi/java/lezione2/MetodiStatici.java)
 
+
+```java
+public class Prova {
+  public        static          final        float    PI_GRECO  =           3.14f;
+/*  |             |               |            |        |       |             |
+ modificatore   (opzionale)   (opzionale)     tipo     nome  assegnazione   valore
+   d'accesso                  indica una
+                               costante
+*/
+
+  public        static        void          nomeMetodo        (String parametro1, String parametroN) {
+/*  |             |             |               |                |        |     |
+modificatore  (opzionale)   risultato    il nome del metodo     tipo    nome    |
+  d'accesso                void o tipo                                          |
+                           (es. String)                                   lista parametri
+*/
+     long   now       =            System.currentTimeMillis( );
+/*     |     |        |              |            |         |
+     tipo   nome  assegnazione    classe       metodo   parametri
+                                contenitrice             nessuno
+                                 del metodo           in questo caso
+*/
+     String msg = "Oggi è " + now;
+
+     System.out.println(msg);
+/*      |    |    |      |
+      classe |  metodo   |
+             |           |
+          variabile   parametro
+           statica
+ */
+  }
+}
+```
+
+
 Package e import
 -------
 Le classi servono per raggruppari metodi che hanno qualcosa in comune, i package per raggruppare classi che hanno qualcosa in comune.

@@ -21,10 +21,29 @@ Per ogni interfaccia Java ci mette a disposizione implementazioni differenti.
 Collection
 ----------
 
+```
+Class Diagram (semplificato)
+
+                               Collection
+                                   |
+                    ------------------------------
+                    |                            |
+                  List                          Set
+                    |                       ------------
+          --------------------              |          |
+          |         |        |           HashSet    SortedSet
+      ArrayList   Vector  LinkedList                   |
+                                                    TreeSet
+```
+
 List
 ----
-L'interfaccia `List` rappresenta una lista mutabile con random access (tramite il metodo `get`).
-Il `size()` di una lista, e l'`add()` e `remove()` di elementi.
+L'interfaccia `List<T>` rappresenta una lista mutabile con random access.
+La lista offre i metodi:
+- `size()` per leggere la lunghezza della lista
+- `get(int i)` per leggere l'elemento `i`esimo della lista
+- `add(T t)` per aggiungere l'elemento alla lista
+- `remove(int/T)` per rimuovere un elemento dalla lista, per indice e per elemento.
 
 `Collections.sort(Comparable)` ovvero come ordinare una collection.
 
@@ -62,6 +81,8 @@ set.add(2);
 System.out.println(set);
 ```
 
+Java dichiara anche un tipo di `Set` ordinato, tramite l'interfaccia `SortedSet`, implementata dalla classe `TreeSet`.
+
 Map
 ---
 La `Map` non è nient'altro che una lista, dove ogni elemento è associato ad una **key**, che deve essere unica (stesso concetto della PK di un db relazionale).
@@ -75,3 +96,30 @@ map.put("superman", new Persona("Clark", "Ant"));
 
 System.out.println(map);
 ```
+
+Iterable e foreach
+------------------
+
+Il costrutto *for each* in Java non è implementato solo per gli array, anzi, può essere utilizzato con tutte le classi che implementano l'interfaccia `Iterable`.
+
+```java
+/*
+ * Il metodo 'Arrays.asList' prende un numero indefinito di parametri
+ * Questo tipo di parametro speciale è chiamato varargs
+ */
+List<Integer> lista = Arrays.asList(5, 7, 13, 35, 3, 76, 100, 9, 21);
+
+//Stampa tutti i numeri nella lista maggiori di 15
+for (Integer n : lista) {
+  if (n > 15) {
+    System.out.println(n);
+  }
+}
+```
+
+I/O Stream
+----------
+Rappresentano una fonte di bytes da usare per la lettura (`InputStream`) o la scrittura (`OutputStream`).
+Un esempio del loro utilizzo è la scrittura e lettura di file tramite le loro implementazioni `FileInputStream` e `FileOutputStream`.
+Un altro esempio del loro utilizzo è la comunicazione via rete, gestita dagli stream delle socket.
+Infine come ultimo esempio possiamo vedere i due stream statici `System.in` e `System.out`.

@@ -12,6 +12,18 @@ Per compilare un file `.java` in bytecode (`.class`) viene utilizzato il compila
 
 Dichiarazione variabili (tipi primitivi)
 --------
+La dichiarazione di una variabile è la definizione di un tipo ed un nome, e può essere accompagnata da un'assegnazione:
+
+```java
+  String    testo;
+/*  |        |
+   tipo     nome
+*/
+  int   numero  =             5;
+/* |      |     |             |
+  tipo   nome  assegnazione  valore
+*/
+```
 Operazioni matematiche, logiche e if
 --------
 [Sorgente](CorsoJava/src/it/r/corsi/java/lezione1/Operazioni.java)

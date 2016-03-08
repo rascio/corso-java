@@ -407,6 +407,20 @@ public static <T> List<T> concat(List<T> a, List<T> b) {
 	}
 	return result;
 }
+
+List<String> lista1 = new List<>()
+lista1.add("ciao");
+
+List<String> lista2 = new List<>()
+lista2.add("ciao");
+
+List<Sting> unione = concat(lista1, lista2);
+
+
+List<Integer> lista3 = new List<>()
+lista3.add(1);
+
+//List<Sting> unione = concat(lista1, lista3);
 ```
 
 I generics possono definire un tipo base di partenza (oltre Object) (utilizzo avanzato)
