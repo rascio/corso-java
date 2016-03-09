@@ -1,4 +1,4 @@
-package it.agecontrol.mazzocarte;
+package it.r.mazzocarte;
 
 public class Mazzo {
 	public static Mazzo crea() {

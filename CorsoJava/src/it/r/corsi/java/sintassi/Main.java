@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import it.agecontrol.mazzocarte.Carta;
 import it.r.corsi.java.lezione4.Scatola;
+import it.r.mazzocarte.Carta;
 
 public class Main {
 

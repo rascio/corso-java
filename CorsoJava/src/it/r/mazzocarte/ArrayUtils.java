@@ -1,4 +1,4 @@
-package it.agecontrol.mazzocarte;
+package it.r.mazzocarte;
 
 import java.util.Random;
 
