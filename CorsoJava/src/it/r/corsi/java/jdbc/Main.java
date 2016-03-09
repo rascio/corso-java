@@ -42,19 +42,11 @@ public class Main {
 			connection.commit();
 		} 
 		catch (SQLException e) {
+			ConnectionUtils.rollback(connection);
 			ConnectionUtils.close(insert);
 			ConnectionUtils.close(selectResultSet);
 			ConnectionUtils.close(select);
 			ConnectionUtils.close(connection);
-			try {
-				ConnectionUtils.rollback(connection);
-			}
-			catch (SQLException e1) {
-				System.err.println("C'è stato un errore durante il rollback. Il rollback è stato causato da:");
-				e.printStackTrace();
-				
-				throw new RuntimeException("Errore durante il rollback", e1);
-			}
 			throw new RuntimeException("Errore durante l'esecuzione di getUpdateCount()", e);
 		}
 		

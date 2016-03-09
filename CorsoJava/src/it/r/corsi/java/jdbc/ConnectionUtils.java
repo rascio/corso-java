@@ -34,9 +34,14 @@ public class ConnectionUtils {
 		}
 	}
 	
-	public static void rollback(Connection connection) throws SQLException {
+	public static void rollback(Connection connection) {
 		if (connection != null) {
-			connection.rollback();
+			try {
+				connection.rollback();
+			} 
+			catch (SQLException e) {
+				throw new RuntimeException("Errore durante il rollback", e);
+			}
 		}
 	}
 	

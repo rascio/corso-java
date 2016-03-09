@@ -1,10 +1,10 @@
 package it.r.corsi.java.lezione4;
 
 public class Scatola {
-//	
-//	public static Scatola vuota() {
-//		return new Scatola(null);
-//	}
+
+	public static Scatola vuota() {
+		return new Scatola(null, 1);
+	}
 
 	private String contenuto;
 	private Integer lato;

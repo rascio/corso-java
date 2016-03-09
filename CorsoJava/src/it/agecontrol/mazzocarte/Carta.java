@@ -45,6 +45,36 @@ public class Carta {
 		return valore;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((seme == null) ? 0 : seme.hashCode());
+		result = prime * result + ((valore == null) ? 0 : valore.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Carta other = (Carta) obj;
+		if (seme == null) {
+			if (other.seme != null)
+				return false;
+		} else if (!seme.equals(other.seme))
+			return false;
+		if (valore == null) {
+			if (other.valore != null)
+				return false;
+		} else if (!valore.equals(other.valore))
+			return false;
+		return true;
+	}
 
 	@Override
 	public String toString() {
