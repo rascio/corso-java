@@ -11,6 +11,7 @@ Classpath
 ---------
 Il classpath per caricare i .class
 Il classpath è una lista di cartelle e files (archivi) dove la JVM cercherà le classi.
+Quando si esegue la JVM il classpath di default contiene la cartella di esecuzione
 
 Java Collections Framework
 ----------------
@@ -92,9 +93,12 @@ La `Map` può essere utilizzata per creare degli indici.
 ```java
 Map<String, Persona> map = new HashMap<>();
 map.put("batman", new Persona("Bruce", "Wayne"));
-map.put("superman", new Persona("Clark", "Ant"));
+map.put("superman", new Persona("Clark", "Kent"));
 
 System.out.println(map);
+
+Persona p = map.get("batman");
+System.out.println(p); //Bruce Wayne
 ```
 
 Iterable e foreach
@@ -113,6 +117,13 @@ List<Integer> lista = Arrays.asList(5, 7, 13, 35, 3, 76, 100, 9, 21);
 for (Integer n : lista) {
   if (n > 15) {
     System.out.println(n);
+  }
+}
+
+List<String> lista = Arrays.asList("casa", "tavolo", "sedia", "scrivania");
+for (String oggetto : lista) {
+  if (oggetto.length() > 5) {
+    System.out.println(oggetto);
   }
 }
 ```
