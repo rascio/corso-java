@@ -16,8 +16,7 @@ public class Main {
 		PreparedStatement select = null;
 		ResultSet selectResultSet = null;
 		try {
-			connection = ConnectionUtils.getConnection("jdbc:mysql://localhost/test", "root", null);
-			connection.setAutoCommit(false);
+			connection = ConnectionUtils.getConnection("jdbc:mysql://localhost/test", "root", null, false);
 			
 			insert = connection.prepareStatement("INSERT INTO persone (nome, cognome) VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
 			insert.setString(1, "Manuel");
@@ -31,8 +30,7 @@ public class Main {
 			
 			select = connection.prepareStatement("SELECT * FROM persone");
 			selectResultSet = select.executeQuery();
-			
-			while (selectResultSet.next()) {
+ 			while (selectResultSet.next()) {
 				Integer id = selectResultSet.getInt("id");
 				String nome = selectResultSet.getString("nome");
 				String cognome = selectResultSet.getString("cognome");
@@ -43,11 +41,13 @@ public class Main {
 		} 
 		catch (SQLException e) {
 			ConnectionUtils.rollback(connection);
+			throw new RuntimeException("Errore durante le query", e);
+		}
+		finally {
 			ConnectionUtils.close(insert);
 			ConnectionUtils.close(selectResultSet);
 			ConnectionUtils.close(select);
 			ConnectionUtils.close(connection);
-			throw new RuntimeException("Errore durante l'esecuzione di getUpdateCount()", e);
 		}
 		
 	}

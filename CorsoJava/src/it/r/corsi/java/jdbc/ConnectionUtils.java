@@ -7,9 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class ConnectionUtils {
-	public static Connection getConnection(String url, String username, String password) {
+	public static Connection getConnection(String url, String username, String password, boolean autoCommit) {
 		try {
-			return DriverManager.getConnection(url, username, password);
+			Connection connection = DriverManager.getConnection(url, username, password);
+			connection.setAutoCommit(autoCommit);
+			return connection;
 		} 
 		catch (SQLException e) {
 			throw new RuntimeException("C'è stato un errore durante il getConnection", e);
