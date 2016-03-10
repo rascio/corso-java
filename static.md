@@ -3,7 +3,7 @@ Metodi Statici
 
 I metodi statici sono funzioni che possono essere richiamate nel codice e ci servono per dividere al meglio la logica del nostro programma. Un metodo statico appartiene ad una classe e può essere utilizzando solamente facendo riferimento ad essa.
 
-[Sorgente](CorsoJava/src/it/r/corsi/java/lezione2/MetodiStatici.java)
+[Sorgente](CorsoJava/src/it/r/corsi/java/metodistatici/MetodiStatici.java)
 
 
 ```java
@@ -57,7 +57,7 @@ Quando si dichiara un metodo deve esserne specificato il suo _modificatore d'acc
 I modificatori d'accesso servono per limitare la visibilità del metodo in maniera da poterlo 	nascondere a chi non ha bisogno di utilizzarlo.
 Per decidere quale modificatore d'accesso utilizzare è sempre necessario domandarci "A chi serve questo metodo?"
 
-**public** => Il metodo è pubblico e chiunque ha visibilità sulla classe potrà vedere anche il metodo.
+**public** => Il metodo è publico e chiunque ha visibilità sulla classe potrà vedere anche il metodo.
 
 **private** => Il metodo è privato alla classe, viene utilizzato per i metodi che definiscono una logica che interessa solo alla classe che lo contiene e che non ci interessa condividere con altri.
 

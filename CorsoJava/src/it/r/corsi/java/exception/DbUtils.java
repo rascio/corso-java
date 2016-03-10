@@ -1,4 +1,4 @@
-package it.r.corsi.java.lezione3;
+package it.r.corsi.java.exception;
 
 public class DbUtils {
 	

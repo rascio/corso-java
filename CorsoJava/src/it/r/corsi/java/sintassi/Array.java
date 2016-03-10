@@ -1,4 +1,4 @@
-package it.r.corsi.java.lezione1;
+package it.r.corsi.java.sintassi;
 
 public class Array {
 

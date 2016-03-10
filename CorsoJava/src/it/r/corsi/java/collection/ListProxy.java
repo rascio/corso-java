@@ -102,13 +102,13 @@ public class ListProxy<T> implements List<T>{
 	}
 
 	@Override
-	public E get(int index) {
+	public T get(int index) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public E set(int index, Object element) {
+	public T set(int index, Object element) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -120,7 +120,7 @@ public class ListProxy<T> implements List<T>{
 	}
 
 	@Override
-	public Object remove(int index) {
+	public T remove(int index) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -1,4 +1,4 @@
-package it.r.corsi.java.lezione2;
+package it.r.corsi.java.metodistatici;
 
 import java.util.Arrays;
 

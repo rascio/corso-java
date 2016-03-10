@@ -15,13 +15,15 @@ Dichiarazione variabili (tipi primitivi)
 La dichiarazione di una variabile è la definizione di un tipo ed un nome, e può essere accompagnata da un'assegnazione:
 
 ```java
-  String    testo;
-/*  |        |
-   tipo     nome
+  String testo;
+/*  |      |
+   tipo   nome
 */
-  int   numero  =             5;
-/* |      |     |             |
-  tipo   nome  assegnazione  valore
+  int   numero  =    5;
+/* |      |     |    |
+  tipo   nome   |  valore
+                |
+            assegnazione  
 */
 ```
 Operazioni matematiche, logiche e if

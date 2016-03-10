@@ -3,15 +3,15 @@ Java Virtual Machine
 
 Esegue bytecode
 ---------------
-La Java Virtual Machine è un programma che viene utilizzato per interpretare il bytecode ed eseguirlo. Il bytecode è un codice di basso livello, veloce da eseguire ma non human readable.
+La Java Virtual Machine è un programma che viene utilizzato per interpretare il bytecode ed eseguirlo. Il bytecode è un codice di basso livello, veloce da eseguire ma illegibile.
 
 Gestisce la memoria (garbage collector)
 ------------
-La JVM si occupa di eseguire il codice e gestirne la memoria, allocando spazio in RAM per le variabili e disallocandolo quando non viene più utilizzato. Di questo processo se ne occupa il garbage collector, che implementa algoritmi per ottimizzare la gestione della memoria.
+La JVM si occupa anche della gestione della memoria, allocando spazio in RAM per le variabili e disallocandolo quando non più utilizzate. Di questo processo se ne occupa il garbage collector, grazie ad algoritmi atti ad evitare sprechi.
 
 I memory leaks
 ------------
-Una gestione erronea della memoria, è difficile, ma quando capita può portare ad uno spreco di memoria, che a lungo andare si esaurisce e causa l'errore `PermGen` e `OutOfMemoryException`
+Una gestione erronea della memoria, è difficile, ma quando capita porta ad un malfunzionamento del garbage collector, che non eliminando lo spazio occupato inutilmente, a lungo andare porta all'esauriemento dello spazio causando l'errore `PermGen` e/o `OutOfMemoryException` ad indicare la saturazione della memoria.
 
 Compilazione e linguaggi JVM
 -------------

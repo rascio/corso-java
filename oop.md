@@ -23,13 +23,19 @@ Il linguaggio ci offre anche la loro controparte object, i cosidetti wrapper che
 
 Il costruttore e le variabili di istanza
 ---------
-Quando si dichiara un oggetto si può dichiarare anche il suo costruttore, ovvero un metodo "speciale" che utilizzeremo per creare un nuovo "contenitore" e passargli i suoi valori.
+Quando si dichiara un oggetto si può dichiarare anche il suo costruttore, ovvero un metodo "speciale" che utilizzeremo per inizializzare una nuova istanza dell'oggetto passandogli dei valori.  
+Possiamo vedere un'istanza di un oggetto come un contenitore di valori.
 ```java
 public class Integer {
 
 	public int value;
 
 	public Integer(int v) {
+		/*
+		 * Quando si utilizzerà 'new Integer(10)'
+		 * il costruttore verrà chiamato con v = 10
+		 * ed assegnerà 10 alla proprietà value de
+		 */
 		value = v;
 	}
 }
@@ -94,7 +100,7 @@ Persona p = new Persona("Sherlock", "Holmes", new Indirizzo("Baker Street, 221B"
 System.out.println(p.nome + " " + p.cognome + " vive a " + p.indirizzo.citta + " in " + p.indirizzo.via);
 ```
 
-Una classe può definire anche più di un costruttore, ma solo uno potrà essere utilizzato per creare l'oggetto.
+Una classe può definire anche più di un costruttore, ed ogni volta che se ne utilizza uno, viene creato un nuovo contenitore.
 
 ```java
 public class Persona {
@@ -106,6 +112,11 @@ public class Persona {
 	}
 
 	public Persona(String c, Indirizzo i) {
+		/*
+		 * Il 'this()' è un metodo speciale utilizzabile solo nei costruttori
+		 * si utilizza per chiamare un'altro costruttore.
+		 * In questo caso viene utilizzato per chiamare il costruttore definito precedentemente
+		 */
 		this("", c, i);
 //		nome = "";
 //		cognome = c;
@@ -117,17 +128,6 @@ public class Persona {
 ```java
 Indirizzo i = new Indirizzo("Baker Street, 221B", "London");
 Persona p = new Persona("Sherlock", "Holmes", i);
-Persona p1 = new Persona(p.nome, copia(p.indirizzo));
-p.nome = new string("ciccio")
-//p.indirizzo.citta = new String("roma");
-
-p.indirizzo == p1.indirizzo //false
-p.indirizzo.via == p1.indirizzo.via //true
-
-
-public static Indirizzo copia(Indirizzo i) {
-	return new Indirizzo(i.via, i.citta);
-}
 ```
 
 Cos'è un oggetto? (2/2)
@@ -197,7 +197,7 @@ Integer.equals(b, c); //false
 
 Metodi di istanza
 ---------
-Molto spesso ci troveremo a scrivere metodi che riguardano 1 solo oggetto, o comunque dove c'è un oggetto principale:
+Molto spesso ci troveremo a scrivere metodi che riguardano un solo oggetto, ovvero che agiscono su quell'oggetto leggendo o scrivendone il contenuto:
 
 ```java
 public class Richiesta {
@@ -233,7 +233,7 @@ Richiesta.rifiuta(r, "Rifiutata perchè consegnata in ritardo");
 System.out.println(Richiesta.stato(r));
 ```
 
-Nello scrivere questi metodi Java ci aiuta, avendo quelli che vengono chiamati "metodi di istanza". Vista la necessità di avere metodi che fanno calcoli su oggetti, rimuovendo la keyword static, faremo in modo che il metodo non appartenga più in generale alla class Richiesta, ma apparterrà solamente alle istanze della classe.
+Nello scrivere questi metodi Java ci aiuta, avendo quelli che vengono chiamati "metodi di istanza". Vista la necessità di avere metodi che fanno calcoli su oggetti, rimuovendo la keyword `static`, faremo in modo che il metodo non appartenga più in generale alla class Richiesta, ma apparterrà solamente alle istanze della classe.
 Cosa vuol dire questo?
 In realtà questo è una comodità che ci offre il compilatore, per far si che ogni volta che dichiariamo un metodo "di istanza", il metodo abbia un parametro in automatico (implicito) del tipo dell'oggetto stesso, il cui nome sarà `this`.
 
@@ -255,6 +255,7 @@ public class Richiesta {
 	}
 
 /*
+	Versione 'static' del metodo accetta.
 	Non compila in quanto 'this' è una keyword Java
 
 	public void static accetta(Richiesta this) {
@@ -289,11 +290,11 @@ r.rifiuta("Consegnata in ritardo.");
 Null: "A billion dollar mistake"
 --------
 Cosa succede se ad una variabile non viene assegnato nessun valore nel costruttore?
-In Java nel caso una variabile non venga inizializzato, la JVM assegnerà un valore di default, differente nel caso essa sia un valore primitivo, o un oggetto.
+Nel caso una variabile non venga inizializzata, la JVM assegnerà un valore di default, differente nel caso essa sia un valore primitivo, o un oggetto.
 Nel caso dei valori primitivi il valore di default assegnato sarà `0` (o `false` nel caso dei boolean).
 Nel caso degli oggetti la cosa diventa un po' più complicata.
 Come valore zero di un oggetto è stato introdotto il concetto di `null`, che sta a significare proprio l'assenza di un valore.
-In Java8 si è cercato di rimuovere il `null` con l'introduzione della classe `Optional`.
+In Java8 si è cercato di rimuovere il `null` con l'introduzione della classe `Optional` e definendo sempre un valore di default.
 Una variabile può anche essere forzata ad essere `null`:
 
 ```java
