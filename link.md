@@ -37,6 +37,8 @@ JUnit è un framework per il test del codice, molto comodo e utile quando integr
 [Lombok](https://projectlombok.org/)
 Project Lombok permette di utilizzare annotation per far generare codice Java al compilatore.
 
+[JOOQ](http://www.jooq.org/)
+
 Piattaforme
 -----------
 
