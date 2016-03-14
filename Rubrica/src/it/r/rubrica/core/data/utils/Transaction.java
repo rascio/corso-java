@@ -1,7 +1,6 @@
-package it.r.corsi.java.jdbc.eserciziothreadlocal.utils;
+package it.r.rubrica.core.data.utils;
 
-import it.r.corsi.java.jdbc.ConnectionUtils;
-import it.r.corsi.java.jdbc.esercizio.utils.EsercizioJdbcUtils;
+import it.r.rubrica.core.data.RubricaJdbcConnection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -21,7 +20,7 @@ public class Transaction {
 		if (CONNECTION.get() != null) {
 			throw new IllegalStateException("La connessione è già aperta");
 		}
-		Connection connection = EsercizioJdbcUtils.openConnection();
+		Connection connection = RubricaJdbcConnection.openConnection();
 		
 		CONNECTION.set(connection);
 	}

@@ -1,9 +1,9 @@
-package it.r.corsi.java.jdbc.eserciziothreadlocal.dao;
+package it.r.rubrica.core.data.dao;
 
-import it.r.corsi.java.jdbc.ConnectionUtils;
-import it.r.corsi.java.jdbc.esercizio.model.Ruolo;
-import it.r.corsi.java.jdbc.esercizio.model.Utente;
-import it.r.corsi.java.jdbc.eserciziothreadlocal.utils.Transaction;
+import it.r.rubrica.core.data.model.Ruolo;
+import it.r.rubrica.core.data.model.Utente;
+import it.r.rubrica.core.data.utils.ConnectionUtils;
+import it.r.rubrica.core.data.utils.Transaction;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -15,12 +15,13 @@ import java.util.List;
 public class UtenteDao {
 
 	public static Integer insert(Utente utente) {
-		try (PreparedStatement insert = Transaction.sql("INSERT INTO utenti (username, password, ruolo, abilitato) VALUES (?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+		try (PreparedStatement insert = Transaction.sql("INSERT INTO utenti (username, password, ruolo, abilitato, contatto_id) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
 			
 			insert.setString(1, utente.getUsername());
 			insert.setString(2, utente.getPassword());
 			insert.setString(3, utente.getRuolo().toString());
 			insert.setBoolean(4, utente.getAbilitato());
+			insert.setInt(5, utente.getContattoId());
 			
 			insert.execute();
 			
@@ -48,7 +49,7 @@ public class UtenteDao {
 	}
 	
 	public static Utente findById(Integer id) {
-		try (PreparedStatement select = Transaction.sql("SELECT * FROM utente WHERE id = ?")) {
+		try (PreparedStatement select = Transaction.sql("SELECT * FROM utenti WHERE id = ?")) {
 
 			select.setInt(1, id);
 			
@@ -136,8 +137,9 @@ public class UtenteDao {
 		String password   = resultSet.getString("password");
 		String ruolo      = resultSet.getString("ruolo");
 		Boolean abilitato = resultSet.getBoolean("abilitato");
+		Integer contattoId= resultSet.getInt("contatto_id");
 		
-		Utente utente = new Utente(pk, username, password, Ruolo.valueOf(ruolo), abilitato);
+		Utente utente = new Utente(pk, username, password, Ruolo.valueOf(ruolo), abilitato, contattoId);
 		
 		return utente;
 	}

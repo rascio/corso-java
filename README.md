@@ -11,8 +11,8 @@ Corso Java
 7. [Librerie](librerie.md)
 8. [JDBC](jdbc.md)
 8. [Rubrica](esercizio.md)
-9. [JEE e .war]
-10. [Installazione JBoss/Tomcat]
+9. [JEE e .war](jee.md)
+10. [Installazione JBoss/Tomcat](http://tomcat.apache.org/)
 11. [Servlet e JSP]
 12. [Deploy]
 13. [Applicazione Web]
