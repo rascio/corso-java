@@ -1,5 +1,6 @@
 package it.r.rubrica.webapp.servlet.contatti;
 
+import it.r.rubrica.core.application.rubrica.dto.input.RicercaContattiQuery;
 import it.r.rubrica.core.application.rubrica.dto.output.RiepilogoContatto;
 import it.r.rubrica.core.application.rubrica.service.RubricaService;
 import it.r.rubrica.core.application.utenze.dto.output.UserInfo;
@@ -25,7 +26,9 @@ public class RicercaContattoServlet extends HttpServlet{
 		String testo = req.getParameter("testo");
 		UserInfo currentUser = LoginUtils.userLogged(req);
 		
-		List<RiepilogoContatto> contatti = RubricaService.ricerca(currentUser.getUserId(), testo);
+		RicercaContattiQuery query = new RicercaContattiQuery(currentUser.getUserId(), testo);
+		
+		List<RiepilogoContatto> contatti = RubricaService.ricerca(query);
 		
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("list", contatti);

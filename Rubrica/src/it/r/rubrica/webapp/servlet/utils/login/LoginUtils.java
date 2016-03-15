@@ -32,8 +32,6 @@ public class LoginUtils {
 			req.getSession().setAttribute(LOGIN, login.getUser());
 		}
 		
-		System.out.println("dump login");
-		dumpSession(req);
 		return login;
 	}
 

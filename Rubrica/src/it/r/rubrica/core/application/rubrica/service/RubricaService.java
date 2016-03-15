@@ -1,6 +1,7 @@
 package it.r.rubrica.core.application.rubrica.service;
 
 import it.r.rubrica.core.application.rubrica.dto.input.AggiungiContattoCommand;
+import it.r.rubrica.core.application.rubrica.dto.input.RicercaContattiQuery;
 import it.r.rubrica.core.application.rubrica.dto.output.DettaglioContatto;
 import it.r.rubrica.core.application.rubrica.dto.output.RiepilogoContatto;
 import it.r.rubrica.core.data.dao.ContattoDao;
@@ -29,10 +30,10 @@ public class RubricaService {
 			Transaction.close();
 		}
 	}
-	public static List<RiepilogoContatto> ricerca(Integer userId, String testo) {
+	public static List<RiepilogoContatto> ricerca(RicercaContattiQuery query) {
 		Transaction.begin();
 		try {
-			List<Contatto> contatti = ContattoDao.findAllByUserIdAndTesto(userId, testo);
+			List<Contatto> contatti = ContattoDao.findAllByUserIdAndTesto(query.getUserId(), query.getTesto());
 			List<RiepilogoContatto> riepilogo = new ArrayList<RiepilogoContatto>();
 			
 			for (Contatto c : contatti) {

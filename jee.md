@@ -31,6 +31,6 @@ Struttura:
 
 Servlet Container e Application Server
 --------------------------------------
-Essendo JEE solamente un'API, e ne esistono varie implementazioni, più o meno complete.
+JEE è solamente un'API, e ne esistono varie implementazioni, più o meno complete.
 Un servlet container è un programma che implementa lo standard delle servlet, e permette l'esecuzione di moduli **.war**.
 Il servlet container è solo una parte di un application server completo, che invece permette l'utilizzo anche di **EJB**, moduli **ear** e altre tecnologie.

@@ -21,7 +21,7 @@ public class Transaction {
 			throw new IllegalStateException("La connessione è già aperta");
 		}
 		Connection connection = RubricaJdbcConnection.openConnection();
-		
+
 		CONNECTION.set(connection);
 	}
 	

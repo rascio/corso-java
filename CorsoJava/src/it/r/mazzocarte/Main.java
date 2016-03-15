@@ -5,6 +5,7 @@ public class Main {
 	public static void main(String[] args) {
 		Mazzo mazzo = Mazzo.crea();
 
+		System.out.println("mazzo: " + mazzo);
 		mazzo.mischia();
 		while (mazzo.carteRimanenti() > 0) {
 			Carta carta = mazzo.prima();
