@@ -20,7 +20,7 @@
     </script>
 </head>
 <body>
-	<div class="container">
+	<div class="container">	
 		<div class="header clearfix">
         	<h3 class="text-muted">Rubrica</h3>
         	<% if (LoginUtils.isUserLogged(request)) { %>
@@ -30,7 +30,7 @@
         	<% }
         	else {
         	%>
-        	<form action="/login" method="POST" class="form-inline pull-right">
+        	<form action="${pageContext.request.contextPath }/login" method="POST" class="form-inline pull-right">
         		<div class="form-group">
    					<input type="text" class="form-control" name="username" id="username" placeholder="username" />
         		</div>

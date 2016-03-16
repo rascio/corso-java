@@ -1,10 +1,10 @@
 package it.r.rubrica.core.data.utils;
 
-import it.r.rubrica.core.data.RubricaJdbcConnection;
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
+import javax.sql.DataSource;
 
 public class Transaction {
 
@@ -16,11 +16,17 @@ public class Transaction {
 	/**
 	 * Inizia una nuova transazione per questo thread
 	 */
-	public static void begin() {
+	public static void begin(DataSource dataSource) {
 		if (CONNECTION.get() != null) {
 			throw new IllegalStateException("La connessione è già aperta");
 		}
-		Connection connection = RubricaJdbcConnection.openConnection();
+		Connection connection;
+		try {
+			connection = dataSource.getConnection();
+		} 
+		catch (SQLException e) {
+			throw new RuntimeException("Errore durante il recupero della connessione", e);
+		}
 
 		CONNECTION.set(connection);
 	}

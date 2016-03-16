@@ -17,8 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebFilter(urlPatterns={
 	"/home",
-	"/contatti/crea",
-	"/contatti/dettaglio"
+	"/contatti/*"
 })
 public class AuthenticationFilter implements Filter{
 

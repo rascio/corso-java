@@ -2,6 +2,7 @@ package it.r.rubrica.webapp.servlet.contatti;
 
 import it.r.rubrica.core.application.rubrica.dto.output.DettaglioContatto;
 import it.r.rubrica.core.application.rubrica.service.RubricaService;
+import it.r.rubrica.webapp.servlet.utils.RubricaServiceRegistry;
 import it.r.rubrica.webapp.servlet.utils.ServletUtils;
 
 import java.io.IOException;
@@ -19,9 +20,11 @@ public class DettaglioContattoServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
 		
-		Integer contattoId = Integer.parseInt(req.getParameter("contattoId"));
+		String contattoId = req.getParameter("contattoId");
 		
-		DettaglioContatto dettaglio = RubricaService.dettaglio(contattoId);
+		RubricaService rubricaService = RubricaServiceRegistry.rubricaService(req);
+
+		DettaglioContatto dettaglio = rubricaService.dettaglio(contattoId);
 		
 		req.setAttribute("dettaglio", dettaglio);
 		

@@ -1,19 +1,19 @@
 package it.r.rubrica.core.application.rubrica.dto.input;
 
 public class RicercaContattiQuery {
-	private Integer userId;
+	private String userId;
 	private String testo;
 
-	public RicercaContattiQuery(Integer userId, String testo) {
+	public RicercaContattiQuery(String userId, String testo) {
 		this.userId = userId;
 		this.testo = testo;
 	}
 
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

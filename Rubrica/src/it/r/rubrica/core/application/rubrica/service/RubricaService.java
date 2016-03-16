@@ -11,11 +11,23 @@ import it.r.rubrica.utils.RubricaBeanUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
+
+import javax.sql.DataSource;
 
 public class RubricaService {
+	
+	private DataSource dataSource;
 
-	public static List<RiepilogoContatto> contatti(Integer userId) {
-		Transaction.begin();
+	public RubricaService(DataSource dataSource) {
+		if (dataSource == null) {
+			throw new RuntimeException("Il datasource non può essere null");
+		}
+		this.dataSource = dataSource;
+	}
+	
+	public List<RiepilogoContatto> contatti(Integer userId) {
+		Transaction.begin(this.dataSource);
 		try {
 			List<Contatto> contatti = ContattoDao.findAllByUserId(userId);
 			List<RiepilogoContatto> riepilogo = new ArrayList<RiepilogoContatto>();
@@ -30,8 +42,8 @@ public class RubricaService {
 			Transaction.close();
 		}
 	}
-	public static List<RiepilogoContatto> ricerca(RicercaContattiQuery query) {
-		Transaction.begin();
+	public List<RiepilogoContatto> ricerca(RicercaContattiQuery query) {
+		Transaction.begin(this.dataSource);
 		try {
 			List<Contatto> contatti = ContattoDao.findAllByUserIdAndTesto(query.getUserId(), query.getTesto());
 			List<RiepilogoContatto> riepilogo = new ArrayList<RiepilogoContatto>();
@@ -47,19 +59,20 @@ public class RubricaService {
 		}
 	}
 	
-	public static Integer inserisciContatto(AggiungiContattoCommand cmd) {
-		Transaction.begin();
+	public String inserisciContatto(AggiungiContattoCommand cmd) {
+		Transaction.begin(this.dataSource);
 		
-		Integer contattoId;
+		String contattoId = UUID.randomUUID().toString();
 		try {
 			Contatto contatto = new Contatto();
+			contatto.setId(contattoId);
 			contatto.setNome(cmd.getNome());
 			contatto.setCognome(cmd.getCognome());
 			contatto.setTelefono(cmd.getTelefono());
 			contatto.setEmail(cmd.getEmail());
 			contatto.setUtenteId(cmd.getUtenteId());
 			
-			contattoId = ContattoDao.insert(contatto);
+			ContattoDao.insert(contatto);
 		}
 		catch (Exception e) {
 			Transaction.rollback();
@@ -70,8 +83,8 @@ public class RubricaService {
 		return contattoId;
 	}
 	
-	public static DettaglioContatto dettaglio(Integer contattoId) {
-		Transaction.begin();
+	public DettaglioContatto dettaglio(String contattoId) {
+		Transaction.begin(this.dataSource);
 		try {
 			Contatto contatto = ContattoDao.findById(contattoId);
 			if (contatto == null) {

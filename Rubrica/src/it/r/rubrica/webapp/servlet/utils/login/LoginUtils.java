@@ -6,6 +6,7 @@ import java.util.Enumeration;
 import it.r.rubrica.core.application.utenze.dto.output.LoginResult;
 import it.r.rubrica.core.application.utenze.dto.output.UserInfo;
 import it.r.rubrica.core.application.utenze.service.UtenzeService;
+import it.r.rubrica.webapp.servlet.utils.RubricaServiceRegistry;
 import it.r.rubrica.webapp.servlet.utils.ServletUtils;
 
 import javax.servlet.ServletException;
@@ -25,9 +26,9 @@ public class LoginUtils {
 	 * @throws LoginException
 	 */
 	public static LoginResult login(HttpServletRequest req, String username, String password) {
-		LoginResult login = UtenzeService.login(username, password);
+		UtenzeService utenzeService = RubricaServiceRegistry.utenzeService(req);
+		LoginResult login = utenzeService.login(username, password);
 		
-		System.out.println("login: " + login);
 		if (login.getSuccess()) {
 			req.getSession().setAttribute(LOGIN, login.getUser());
 		}
@@ -44,8 +45,6 @@ public class LoginUtils {
 	 * @throws LoginException
 	 */
 	public static UserInfo userLogged(HttpServletRequest req){
-		System.out.println("dump userLogged");
-		dumpSession(req);
 		return (UserInfo) req.getSession().getAttribute(LOGIN);
 	}
 	

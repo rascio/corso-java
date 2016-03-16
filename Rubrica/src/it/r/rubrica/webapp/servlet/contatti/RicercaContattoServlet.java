@@ -4,6 +4,7 @@ import it.r.rubrica.core.application.rubrica.dto.input.RicercaContattiQuery;
 import it.r.rubrica.core.application.rubrica.dto.output.RiepilogoContatto;
 import it.r.rubrica.core.application.rubrica.service.RubricaService;
 import it.r.rubrica.core.application.utenze.dto.output.UserInfo;
+import it.r.rubrica.webapp.servlet.utils.RubricaServiceRegistry;
 import it.r.rubrica.webapp.servlet.utils.ServletUtils;
 import it.r.rubrica.webapp.servlet.utils.login.LoginUtils;
 
@@ -28,8 +29,16 @@ public class RicercaContattoServlet extends HttpServlet{
 		
 		RicercaContattiQuery query = new RicercaContattiQuery(currentUser.getUserId(), testo);
 		
-		List<RiepilogoContatto> contatti = RubricaService.ricerca(query);
+		RubricaService rubricaService = RubricaServiceRegistry.rubricaService(req);
+		List<RiepilogoContatto> contatti = rubricaService.ricerca(query);
 		
+		/*
+		 * Wrappo l'array di risposta in un oggetto
+		 * {
+		 *    "list": []
+		 * }   
+		 * 
+		 */
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("list", contatti);
 		

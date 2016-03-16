@@ -1,21 +1,21 @@
 package it.r.rubrica.core.data.model;
 
+
 public class Utente {
 
-	private Integer id;
+	private String id;
 	private String username;
 	private String password;
 	private Ruolo ruolo;
 	private Boolean abilitato;
-	private Integer contattoId;
+	private String contattoId;
 
 	public Utente() {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Utente(Integer id, String username, String password, Ruolo ruolo,
-			Boolean abilitato, Integer contattoId) {
-		super();
+	public Utente(String id, String username, String password, Ruolo ruolo,
+			Boolean abilitato, String contattoId) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -24,11 +24,11 @@ public class Utente {
 		this.contattoId = contattoId;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -64,11 +64,11 @@ public class Utente {
 		this.abilitato = abilitato;
 	}
 
-	public Integer getContattoId() {
+	public String getContattoId() {
 		return contattoId;
 	}
 
-	public void setContattoId(Integer contattoId) {
+	public void setContattoId(String contattoId) {
 		this.contattoId = contattoId;
 	}
 

@@ -2,7 +2,7 @@ package it.r.rubrica.core.application.utenze.dto.output;
 
 public class UserInfo {
 
-	private Integer userId;
+	private String userId;
 	private String username;
 	private String nome;
 	private String cognome;
@@ -10,18 +10,18 @@ public class UserInfo {
 	public UserInfo() {
 	}
 
-	public UserInfo(Integer userId, String username, String nome, String cognome) {
+	public UserInfo(String userId, String username, String nome, String cognome) {
 		this.userId = userId;
 		this.username = username;
 		this.nome = nome;
 		this.cognome = cognome;
 	}
 
-	public Integer getUserId() {
+	public String getUserId() {
 		return userId;
 	}
 
-	public void setUserId(Integer userId) {
+	public void setUserId(String userId) {
 		this.userId = userId;
 	}
 

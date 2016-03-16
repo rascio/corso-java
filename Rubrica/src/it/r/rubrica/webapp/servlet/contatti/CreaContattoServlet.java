@@ -3,6 +3,7 @@ package it.r.rubrica.webapp.servlet.contatti;
 import it.r.rubrica.core.application.rubrica.dto.input.AggiungiContattoCommand;
 import it.r.rubrica.core.application.rubrica.service.RubricaService;
 import it.r.rubrica.core.application.utenze.dto.output.UserInfo;
+import it.r.rubrica.webapp.servlet.utils.RubricaServiceRegistry;
 import it.r.rubrica.webapp.servlet.utils.ServletUtils;
 import it.r.rubrica.webapp.servlet.utils.login.LoginUtils;
 
@@ -28,7 +29,9 @@ public class CreaContattoServlet extends HttpServlet{
 		
 		AggiungiContattoCommand cmd = new AggiungiContattoCommand(nome, cognome, telefono, email, currentUser.getUserId());
 		
-		RubricaService.inserisciContatto(cmd);
+		RubricaService rubricaService = RubricaServiceRegistry.rubricaService(req);
+		
+		rubricaService.inserisciContatto(cmd);
 		
 		ServletUtils.redirect("/home", req, resp);
 	}

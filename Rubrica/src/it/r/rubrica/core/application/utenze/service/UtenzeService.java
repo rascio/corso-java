@@ -12,16 +12,25 @@ import it.r.rubrica.core.data.utils.RubricaDataConstants;
 import it.r.rubrica.core.data.utils.Transaction;
 
 import java.util.List;
+import java.util.UUID;
+
+import javax.sql.DataSource;
 
 public class UtenzeService {
 
-	public static Integer registra(RegistraUtenteCommand cmd) {
+	private DataSource dataSource;
+	
+	public UtenzeService(DataSource dataSource) {
+		this.dataSource = dataSource;
+	}
+	
+	public String registra(RegistraUtenteCommand cmd) {
 		assertNotNull(cmd.getUsername(), "username");
 		assertNotNull(cmd.getPassword(), "password");
 
-		Transaction.begin();
+		Transaction.begin(this.dataSource);
 		
-		Integer id;
+		String id = UUID.randomUUID().toString();
 		try {
 			
 			/*
@@ -29,21 +38,23 @@ public class UtenzeService {
 			 * trà i contatti dell'admin di sistema
 			 */
 			Contatto contatto = new Contatto();
+			contatto.setId(UUID.randomUUID().toString());
 			contatto.setNome(cmd.getNome());
 			contatto.setCognome(cmd.getCognome());
 			contatto.setEmail(cmd.getEmail());
 			contatto.setUtenteId(RubricaDataConstants.ADMIN_ID);
 			
-			Integer contattoId = ContattoDao.insert(contatto);
+			ContattoDao.insert(contatto);
 			
 			Utente utente = new Utente();
+			utente.setId(id);
 			utente.setUsername(cmd.getUsername());
 			utente.setPassword(cmd.getPassword());
 			utente.setRuolo(Ruolo.USER);
 			utente.setAbilitato(true);
-			utente.setContattoId(contattoId);
+			utente.setContattoId(contatto.getId());
 			
-			id = UtenteDao.insert(utente);
+			UtenteDao.insert(utente);
 		}
 		catch (Exception e) {
 			Transaction.rollback();
@@ -53,10 +64,10 @@ public class UtenzeService {
 		return id;
 	}
 	
-	public static void disabilita(List<Integer> utenteId) {
+	public void disabilita(List<Integer> utenteId) {
 		assertNotNull(utenteId, "utenteId");
 		
-		Transaction.begin();
+		Transaction.begin(this.dataSource);
 		try {
 			List<Utente> utenti = UtenteDao.findAllByIds(utenteId);
 			
@@ -73,11 +84,11 @@ public class UtenzeService {
 		Transaction.commit();
 	}
 	
-	public static LoginResult login(String username, String password) {
+	public LoginResult login(String username, String password) {
 		assertNotNull(username, "username");
 		assertNotNull(password, "password");
 		
-		Transaction.begin();
+		Transaction.begin(this.dataSource);
 		try {
 			Utente utente = UtenteDao.findByUsername(username);
 			
@@ -101,10 +112,10 @@ public class UtenzeService {
 		}
 	}
 	
-	public static UserInfo userInfo(Integer utenteId) {
+	public UserInfo userInfo(Integer utenteId) {
 		assertNotNull(utenteId, "utenteId");
 		
-		Transaction.begin();
+		Transaction.begin(this.dataSource);
 		try {
 			Utente utente     = UtenteDao.findById(utenteId);
 			Contatto contatto = ContattoDao.findById(utente.getContattoId());

@@ -2,7 +2,7 @@ package it.r.rubrica.core.application.rubrica.dto.output;
 
 public class RiepilogoContatto {
 
-	private Integer id;
+	private String id;
 	private String nome;
 	private String cognome;
 
@@ -10,18 +10,17 @@ public class RiepilogoContatto {
 		// TODO Auto-generated constructor stub
 	}
 
-	public RiepilogoContatto(Integer id, String nome, String cognome) {
-		super();
+	public RiepilogoContatto(String id, String nome, String cognome) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 

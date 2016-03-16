@@ -2,7 +2,6 @@ package it.r.rubrica.core.data.dao;
 
 import it.r.rubrica.core.data.model.Ruolo;
 import it.r.rubrica.core.data.model.Utente;
-import it.r.rubrica.core.data.utils.ConnectionUtils;
 import it.r.rubrica.core.data.utils.Transaction;
 
 import java.sql.PreparedStatement;
@@ -14,18 +13,18 @@ import java.util.List;
 
 public class UtenteDao {
 
-	public static Integer insert(Utente utente) {
-		try (PreparedStatement insert = Transaction.sql("INSERT INTO utenti (username, password, ruolo, abilitato, contatto_id) VALUES (?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
-			
-			insert.setString(1, utente.getUsername());
-			insert.setString(2, utente.getPassword());
-			insert.setString(3, utente.getRuolo().toString());
-			insert.setBoolean(4, utente.getAbilitato());
-			insert.setInt(5, utente.getContattoId());
+	public static void insert(Utente utente) {
+		try (PreparedStatement insert = Transaction.sql("INSERT INTO utenti (id, username, password, ruolo, abilitato, contatto_id) VALUES (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+			insert.setString (1, utente.getId());
+			insert.setString (2, utente.getUsername());
+			insert.setString (3, utente.getPassword());
+			insert.setString (4, utente.getRuolo().toString());
+			insert.setBoolean(5, utente.getAbilitato());
+			insert.setString (6, utente.getContattoId());
 			
 			insert.execute();
 			
-			return ConnectionUtils.getGeneratedId(insert);
+//			return ConnectionUtils.getGeneratedId(insert);
 		}
 		catch (SQLException e) {
 			throw new RuntimeException("Errore durante l'insert di " + utente, e);
@@ -39,7 +38,7 @@ public class UtenteDao {
 			update.setString(2, utente.getPassword());
 			update.setString(3, utente.getRuolo().toString());
 			update.setBoolean(4, utente.getAbilitato());
-			update.setInt(5, utente.getId());
+			update.setString(5, utente.getId());
 			
 			update.execute();
 		}
@@ -130,14 +129,35 @@ public class UtenteDao {
 			throw new RuntimeException("Errore durante il recupero degli utenti", e);
 		}
 	}
+	
+	/*
+	public static Integer maxColonna() {
+		try (PreparedStatement select = Transaction.sql("SELECT MAX(colonna) as max FROM utenti WHERE username = ?")) {
 
+			try (ResultSet resultSet = select.executeQuery()) {
+			
+				if (resultSet.next()) {
+					Integer max = resultSet.getInt("max");
+					
+					return max;
+				}
+				else {
+					return null;
+				}
+			}
+		}
+		catch (SQLException e) {
+			throw new RuntimeException("Errore durante il recupero dell'utente con username " + username, e);
+		}
+	}
+	*/
 	private static Utente transform(ResultSet resultSet) throws SQLException {
-		Integer pk        = resultSet.getInt("id");
+		String pk         = resultSet.getString("id");
 		String username   = resultSet.getString("username");
 		String password   = resultSet.getString("password");
 		String ruolo      = resultSet.getString("ruolo");
 		Boolean abilitato = resultSet.getBoolean("abilitato");
-		Integer contattoId= resultSet.getInt("contatto_id");
+		String contattoId = resultSet.getString("contatto_id");
 		
 		Utente utente = new Utente(pk, username, password, Ruolo.valueOf(ruolo), abilitato, contattoId);
 		

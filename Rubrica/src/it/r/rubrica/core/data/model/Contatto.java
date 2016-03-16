@@ -2,19 +2,19 @@ package it.r.rubrica.core.data.model;
 
 public class Contatto {
 
-	private Integer id;
+	private String id;
 	private String nome;
 	private String cognome;
 	private String telefono;
 	private String email;
-	private Integer utenteId;
+	private String utenteId;
 
 	public Contatto() {
 
 	}
 
-	public Contatto(Integer id, String nome, String cognome, String telefono,
-			String email, Integer utenteId) {
+	public Contatto(String id, String nome, String cognome, String telefono,
+			String email, String utenteId) {
 		this.id = id;
 		this.nome = nome;
 		this.cognome = cognome;
@@ -23,11 +23,11 @@ public class Contatto {
 		this.utenteId = utenteId;
 	}
 
-	public Integer getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -63,11 +63,11 @@ public class Contatto {
 		this.email = email;
 	}
 
-	public Integer getUtenteId() {
+	public String getUtenteId() {
 		return utenteId;
 	}
 
-	public void setUtenteId(Integer utenteId) {
+	public void setUtenteId(String utenteId) {
 		this.utenteId = utenteId;
 	}
 

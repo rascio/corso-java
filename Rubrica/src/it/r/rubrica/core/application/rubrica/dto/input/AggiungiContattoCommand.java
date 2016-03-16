@@ -5,14 +5,14 @@ public class AggiungiContattoCommand {
 	private String cognome;
 	private String telefono;
 	private String email;
-	private Integer utenteId;
+	private String utenteId;
 	
 	public AggiungiContattoCommand() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public AggiungiContattoCommand(String nome, String cognome,
-			String telefono, String email, Integer utenteId) {
+			String telefono, String email, String utenteId) {
 		this.nome = nome;
 		this.cognome = cognome;
 		this.telefono = telefono;
@@ -52,11 +52,11 @@ public class AggiungiContattoCommand {
 		this.email = email;
 	}
 
-	public Integer getUtenteId() {
+	public String getUtenteId() {
 		return utenteId;
 	}
 
-	public void setUtenteId(Integer utenteId) {
+	public void setUtenteId(String utenteId) {
 		this.utenteId = utenteId;
 	}
 
