@@ -90,8 +90,7 @@ Questo ci permette così di ragionare più facilmente su alcuni metodi, sapendo 
 
 La similitudine migliore per un sistema ad oggetti è un puzzle, dove l'interfaccia corrisponde all'attacco (al lato) di un pezzettino di un puzzle, definendo così l'attacco che deve avere un altro pezzo per poter essere unito:
 
-![interface as puzzle]
-(interface-puzzle.png)
+![interface as puzzle](interface-puzzle.png)
 
 Questa tecnica ci permette di poter avere implementazioni differenti degli stessi metodi, e poter utilizzare una determinata logica in un momento, ed un'altra in un altro caso. Si pensi ad esempio nella situazione di test di logiche complesse, supponendo che la nostra applicazione debba eseguire dei calcoli complessi facendo 3-4 ricerche nel database per poter calcolare qualcosa, potremmo avere un metodo che utilizza l'interfaccia `EntityDb` che implementa questa logica, demandando all'interfaccia l'esecuzione effettiva delle query.
 In questa maniera potremmo utilizzare un'implementazione finta di `EntityDb` che restituisce dati preimpostati (*mock*) per eseguire dei test da codice dei quali siamo certi del risultato che il nostro metodo ci deve restituire, es:
